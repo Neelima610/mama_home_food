@@ -1,11 +1,10 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
-import '../../../shared/widgets/common/app_loader.dart';
+
 import '../../../core/colors/colors.dart';
 import '../../../core/constants/constants.dart';
-import '../../../core/routes/routes.dart';
+import '../../../core/routes/route_names.dart';
 import '../../../shared/widgets/common/app_logo.dart';
+import '../../../shared/widgets/loaders/app_loader.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -31,20 +30,34 @@ class _SplashScreenState extends State<SplashScreen>
       vsync: this,
     );
 
-    _fadeAnimation = CurvedAnimation(parent: _controller, curve: Curves.easeIn);
+    _fadeAnimation = CurvedAnimation(
+      parent: _controller,
+      curve: Curves.easeIn,
+    );
 
     _scaleAnimation = Tween<double>(
       begin: 0.80,
       end: 1.0,
-    ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeOutBack));
+    ).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: Curves.easeOutBack,
+      ),
+    );
 
     _controller.forward();
 
-    Timer(const Duration(seconds: 5), () {
-      if (!mounted) return;
+    Future.delayed(
+      AppDurations.splash,
+      () {
+        if (!mounted) return;
 
-      Navigator.pushReplacementNamed(context, RouteNames.navigation,);
-    });
+        Navigator.pushReplacementNamed(
+          context,
+          RouteNames.navigation,
+        );
+      },
+    );
   }
 
   @override
@@ -55,6 +68,8 @@ class _SplashScreenState extends State<SplashScreen>
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
+
     return Scaffold(
       backgroundColor: AppColors.primary,
       body: SafeArea(
@@ -66,13 +81,16 @@ class _SplashScreenState extends State<SplashScreen>
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    // Soft Glow
+                    //--------------------------------------------------
+                    // Glow Effect
+                    //--------------------------------------------------
+
                     Container(
                       width: AppSizes.splashGlowSize,
                       height: AppSizes.splashGlowSize,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         shape: BoxShape.circle,
-                        boxShadow: const [
+                        boxShadow: [
                           BoxShadow(
                             color: AppColors.shadow,
                             blurRadius: 80,
@@ -82,39 +100,64 @@ class _SplashScreenState extends State<SplashScreen>
                       ),
                     ),
 
+                    //--------------------------------------------------
                     // Logo
+                    //--------------------------------------------------
+
                     ScaleTransition(
                       scale: _scaleAnimation,
                       child: const AppLogo(),
                     ),
-                    const SizedBox(height: AppSizes.splashTitleSpacing),
 
-                    // App Name
-                    Text(
-                      AppConstants.appName,
-                      style: Theme.of(context).textTheme.headlineLarge
-                          ?.copyWith(
-                            color: AppColors.textLight,
-                            fontWeight: FontWeight.bold,
-                          ),
+                    const SizedBox(
+                      height: AppSizes.splashTitleSpacing,
                     ),
 
-                    const SizedBox(height: AppSizes.splashSubtitleSpacing),
+                    //--------------------------------------------------
+                    // App Name
+                    //--------------------------------------------------
 
-                    // Tagline
                     Text(
-                      AppStrings.tagline,
-                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        color: AppColors.textLight.withValues(),
+                      AppConstants.appName,
+                      style: textTheme.headlineLarge?.copyWith(
+                        color: AppColors.textLight,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
 
-                    const SizedBox(height: AppSizes.splashLoaderSpacing),
+                    const SizedBox(
+                      height: AppSizes.splashSubtitleSpacing,
+                    ),
+
+                    //--------------------------------------------------
+                    // Tagline
+                    //--------------------------------------------------
+
+                    Text(
+                      AppStrings.tagline,
+                      style: textTheme.titleMedium?.copyWith(
+                        color: AppColors.textLight.withValues(
+                          alpha: 0.85,
+                        ),
+                      ),
+                    ),
+
+                    const SizedBox(
+                      height: AppSizes.splashLoaderSpacing,
+                    ),
+
+                    //--------------------------------------------------
+                    // Loader
+                    //--------------------------------------------------
 
                     const AppLoader(),
                   ],
                 ),
               ),
+
+              //--------------------------------------------------
+              // Footer
+              //--------------------------------------------------
 
               Positioned(
                 left: 0,
@@ -123,8 +166,10 @@ class _SplashScreenState extends State<SplashScreen>
                 child: Center(
                   child: Text(
                     AppStrings.madeWithLove,
-                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      color: AppColors.textLight.withOpacity(0.75),
+                    style: textTheme.bodyMedium?.copyWith(
+                      color: AppColors.textLight.withValues(
+                        alpha: 0.75,
+                      ),
                     ),
                   ),
                 ),

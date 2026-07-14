@@ -48,4 +48,6 @@ class AppConstants {
   static const int bannerAutoPlaySeconds = 4;
 
   static const int otpLength = 6;
+
+  static const Duration splashDuration = Duration(seconds: 5);
 }

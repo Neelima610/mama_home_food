@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/colors/colors.dart';
-import '../../../../core/constants/constants.dart';
-import '../../../../core/theme/app_text_styles.dart';
-import '../../../../shared/widgets/common/app_logo.dart';
+import '../../../core/colors/colors.dart';
+import '../../../core/constants/constants.dart';
+import '../../../core/theme/app_text_styles.dart';
+import '../../../shared/widgets/common/app_logo.dart';
 
 class BannerSlider extends StatelessWidget {
   const BannerSlider({super.key});
@@ -105,7 +105,7 @@ class BannerSlider extends StatelessWidget {
                 child: Container(
                   padding: const EdgeInsets.all(12),
                   decoration: BoxDecoration(
-                    color: AppColors.white.withOpacity(0.15),
+                    color: AppColors.white.withValues(alpha: 0.15),
                     shape: BoxShape.circle,
                   ),
                   child: const AppLogo(

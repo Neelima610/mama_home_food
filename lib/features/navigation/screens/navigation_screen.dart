@@ -1,3 +1,5 @@
+
+// navigation_screen.dart
 import 'package:flutter/material.dart';
 
 import '../../cart/screens/cart_screen.dart';
@@ -16,7 +18,7 @@ class NavigationScreen extends StatefulWidget {
 
 class _NavigationScreenState
     extends State<NavigationScreen> {
-  int currentIndex = 0;
+  int _currentIndex = 0;
 
   final List<Widget> pages = const [
     HomeScreen(),
@@ -29,15 +31,15 @@ class _NavigationScreenState
   Widget build(BuildContext context) {
     return Scaffold(
       body: IndexedStack(
-        index: currentIndex,
+        index: _currentIndex,
         children: pages,
       ),
 
       bottomNavigationBar: BottomNavBar(
-        currentIndex: currentIndex,
+        currentIndex: _currentIndex,
         onTap: (index) {
           setState(() {
-            currentIndex = index;
+            _currentIndex = index;
           });
         },
       ),
