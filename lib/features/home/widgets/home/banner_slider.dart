@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../core/colors/colors.dart';
-import '../../core/constants/constants.dart';
-import '../../core/theme/app_text_styles.dart';
+import '../../../../core/colors/colors.dart';
+import '../../../../core/constants/constants.dart';
+import '../../../../core/theme/app_text_styles.dart';
+import '../../../../shared/widgets/common/app_logo.dart';
 
 class BannerSlider extends StatelessWidget {
   const BannerSlider({super.key});
@@ -38,6 +39,10 @@ class BannerSlider extends StatelessWidget {
         ),
         child: Row(
           children: [
+            //--------------------------------------------------
+            // Left Content
+            //--------------------------------------------------
+
             Expanded(
               flex: 3,
               child: Column(
@@ -60,7 +65,7 @@ class BannerSlider extends StatelessWidget {
                   Text(
                     "Healthy • Hygienic • Delicious",
                     style: AppTextStyles.bodyMedium.copyWith(
-                      color: AppColors.white,
+                      color: AppColors.white.withOpacity(0.9),
                     ),
                   ),
 
@@ -70,8 +75,8 @@ class BannerSlider extends StatelessWidget {
 
                   Container(
                     padding: const EdgeInsets.symmetric(
-                      horizontal: 16,
-                      vertical: 8,
+                      horizontal: 18,
+                      vertical: 10,
                     ),
                     decoration: BoxDecoration(
                       color: AppColors.white,
@@ -79,10 +84,10 @@ class BannerSlider extends StatelessWidget {
                           BorderRadius.circular(30),
                     ),
                     child: Text(
-                      "Coming Soon",
+                      "Order Now",
                       style: AppTextStyles.bodyMedium.copyWith(
                         color: AppColors.primary,
-                        fontWeight: FontWeight.w600,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
@@ -90,11 +95,24 @@ class BannerSlider extends StatelessWidget {
               ),
             ),
 
-            const Expanded(
-              child: Icon(
-                Icons.restaurant,
-                color: AppColors.white,
-                size: 70,
+            //--------------------------------------------------
+            // Right Logo
+            //--------------------------------------------------
+
+            Expanded(
+              flex: 2,
+              child: Center(
+                child: Container(
+                  padding: const EdgeInsets.all(12),
+                  decoration: BoxDecoration(
+                    color: AppColors.white.withOpacity(0.15),
+                    shape: BoxShape.circle,
+                  ),
+                  child: const AppLogo(
+                    width: 90,
+                    height: 90,
+                  ),
+                ),
               ),
             ),
           ],

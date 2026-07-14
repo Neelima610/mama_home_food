@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../core/colors/colors.dart';
-import '../../core/constants/constants.dart';
+import '../../../core/colors/colors.dart';
+import '../../../core/constants/constants.dart';
 
 class CustomTextField extends StatefulWidget {
   const CustomTextField({

@@ -1,4 +1,4 @@
-import '../../models/product_model.dart';
+import '../../models/product/product_model.dart';
 import '../dummy/product_data.dart';
 
 class ProductRepository {

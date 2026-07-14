@@ -1,4 +1,4 @@
-import '../../models/category_model.dart';
+import '../../models/category/category_model.dart';
 import '../dummy/category_data.dart';
 
 class CategoryRepository {

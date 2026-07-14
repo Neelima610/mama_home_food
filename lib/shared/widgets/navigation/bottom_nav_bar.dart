@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../core/colors/colors.dart';
+import '../../../core/colors/colors.dart';
 
 class BottomNavBar extends StatelessWidget {
   const BottomNavBar({

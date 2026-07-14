@@ -6,11 +6,11 @@ import '../../../core/routes/route_names.dart';
 import '../../../core/theme/themes.dart';
 import '../../../data/dummy/category_data.dart';
 import '../../../data/repositories/repositories.dart';
-import '../../../widgets/home/banner_slider.dart';
-import '../../../widgets/home/category_card.dart';
-import '../../../widgets/home/home_app_bar.dart';
-import '../../../widgets/home/product_card.dart';
-import '../../../widgets/home/search_box.dart';
+import '../widgets/home/banner_slider.dart';
+import '../widgets/home/category_card.dart';
+import '../widgets/home/home_app_bar.dart';
+import '../widgets/home/product_card.dart';
+import '../widgets/home/search_box.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../core/constants/constants.dart';
+import '../../../core/constants/constants.dart';
 
 class AppLogo extends StatelessWidget {
   const AppLogo({

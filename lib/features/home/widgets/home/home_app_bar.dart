@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../core/colors/colors.dart';
-import '../../core/constants/constants.dart';
-import '../../core/theme/app_text_styles.dart';
-import '../common/app_logo.dart';
+import '../../../../core/colors/colors.dart';
+import '../../../../core/constants/constants.dart';
+import '../../../../core/theme/app_text_styles.dart';
+import '../../../../shared/widgets/common/app_logo.dart';
 
 class HomeAppBar extends StatelessWidget {
   const HomeAppBar({

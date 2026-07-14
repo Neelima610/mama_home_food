@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../core/colors/colors.dart';
 // import '../../core/constants/constants.dart';
-import '../../../models/category_model.dart';
+import '../../../models/category/category_model.dart';
 
 class CategoryScreen extends StatelessWidget {
   const CategoryScreen({

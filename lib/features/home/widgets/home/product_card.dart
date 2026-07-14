@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import '../../core/colors/colors.dart';
-import '../../core/constants/constants.dart';
-import '../../core/theme/app_text_styles.dart';
-import '../../models/product_model.dart';
-import '../common/custom_button.dart';
-import '../common/custom_card.dart';
+import '../../../../core/colors/colors.dart';
+import '../../../../core/constants/constants.dart';
+import '../../../../core/theme/app_text_styles.dart';
+import '../../../../models/product/product_model.dart';
+import '../../../../shared/widgets/common/custom_button.dart';
+import '../../../../shared/widgets/common/custom_card.dart';
 
 class ProductCard extends StatelessWidget {
   const ProductCard({

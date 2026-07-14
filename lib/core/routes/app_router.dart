@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mama_home_food/features/splash/screens/splash_screen.dart';
 
-import '../../models/category_model.dart';
+import '../../models/category/category_model.dart';
 import '../../features/category/screens/category_screen.dart';
 // import '../../screens/home/home_screen.dart';
 import '../../features/navigation/screens/navigation_screen.dart';
