@@ -9,10 +9,8 @@ class CategoryRepository {
     return CategoryData.categories;
   }
 
-  /// Returns one category
-  static CategoryModel? getCategoryById(
-    String id,
-  ) {
+  /// Returns category by id
+  static CategoryModel? getCategoryById(String id) {
     try {
       return CategoryData.categories.firstWhere(
         (category) => category.id == id,

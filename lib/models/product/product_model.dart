@@ -1,3 +1,5 @@
+
+// product_model.dart
 class ProductModel {
   final String id;
   final String name;
@@ -40,6 +42,7 @@ class ProductModel {
     bool? isAvailable,
     bool? isFavorite,
     String? categoryId,
+    bool? isFeatured,
   }) {
     return ProductModel(
       id: id ?? this.id,
@@ -53,6 +56,7 @@ class ProductModel {
       isAvailable: isAvailable ?? this.isAvailable,
       isFavorite: isFavorite ?? this.isFavorite,
       categoryId: categoryId ?? this.categoryId,
+      isFeatured: isFeatured ?? this.isFeatured,
     );
   }
 
@@ -74,6 +78,7 @@ class ProductModel {
       isAvailable: map['isAvailable'] ?? true,
       isFavorite: map['isFavorite'] ?? false,
       categoryId: map['categoryId'] ?? '',
+      isFeatured: map['isFeatured'] ?? false,
     );
   }
 
@@ -91,6 +96,7 @@ class ProductModel {
       'isAvailable': isAvailable,
       'isFavorite': isFavorite,
       'categoryId': categoryId,
+      'isFeatured': isFeatured,
     };
   }
 

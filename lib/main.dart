@@ -20,7 +20,7 @@ void main() {
           create: (_) => ProductProvider()..loadProducts(),
         ),
         ChangeNotifierProvider(
-          create: (_) => CategoryProvider()..loadCategories(),
+          create: (_) => CategoryProvider(),
         ),
         ChangeNotifierProvider(
           create: (_) => CartProvider(),

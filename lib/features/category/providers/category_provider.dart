@@ -1,21 +1,31 @@
 import 'package:flutter/material.dart';
 
-import '../../../data/repositories/repositories.dart';
-import '../../../models/category/category_model.dart';
+import '../../../models/product/product_model.dart';
+import '../../../data/repositories/product_repository.dart';
 
 class CategoryProvider extends ChangeNotifier {
-  final List<CategoryModel> _categories = [];
+  List<ProductModel> _products = [];
 
-  List<CategoryModel> get categories =>
-      _categories;
+  List<ProductModel> get products => _products;
 
-  void loadCategories() {
-    _categories
-      ..clear()
-      ..addAll(
-        CategoryRepository.getAllCategories(),
-      );
+  bool _isLoading = false;
 
+  bool get isLoading => _isLoading;
+
+  void loadProducts(String categoryId) {
+    _isLoading = true;
+    notifyListeners();
+
+    _products = ProductRepository.getProductsByCategory(
+      categoryId,
+    );
+
+    _isLoading = false;
+    notifyListeners();
+  }
+
+  void clear() {
+    _products = [];
     notifyListeners();
   }
 }

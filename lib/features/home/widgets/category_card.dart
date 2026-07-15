@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/colors/colors.dart';
-import '../../../../core/constants/constants.dart';
-import '../../../../core/theme/app_text_styles.dart';
-import '../../../../models/category/category_model.dart';
+import '../../../core/colors/colors.dart';
+import '../../../core/constants/constants.dart';
+import '../../../core/theme/app_text_styles.dart';
+import '../../../models/category/category_model.dart';
 
 class CategoryCard extends StatelessWidget {
   const CategoryCard({
@@ -42,10 +42,16 @@ class CategoryCard extends StatelessWidget {
             ),
             child: Padding(
               padding: const EdgeInsets.all(12),
-              child: Image.asset(
-                category.image,
-                fit: BoxFit.contain,
-              ),
+              child: category.image.isNotEmpty
+                  ? Image.asset(
+                      category.image,
+                      fit: BoxFit.contain,
+                    )
+                  : Icon(
+                      category.icon,
+                      size: 34,
+                      color: AppColors.primary,
+                    ),
             ),
           ),
 
