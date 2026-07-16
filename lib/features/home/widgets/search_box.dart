@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/constants/constants.dart';
-import '../../../../shared/widgets/common/custom_text_field.dart';
+import '../../../core/constants/constants.dart';
+import '../../../shared/widgets/inputs/custom_text_field.dart';
 
 class SearchBox extends StatelessWidget {
   const SearchBox({

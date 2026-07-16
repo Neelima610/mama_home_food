@@ -111,7 +111,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
       obscureText: _obscure,
 
       style: const TextStyle(
-        color: AppColors.textPrimary,
+        color: AppColors.textDark,
         fontSize: 15,
         fontWeight: FontWeight.w500,
       ),

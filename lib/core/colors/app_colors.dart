@@ -1,18 +1,57 @@
-//app_colors.dart
 
+// app_colors.dart
 import 'package:flutter/material.dart';
 
-/// Centralized color palette for the Mama Home Food application.
-///
-/// All colors used throughout the app should come from this class.
-/// This makes it easy to maintain a consistent design and update
-/// branding in the future.
 class AppColors {
   AppColors._();
 
-  // =========================
+  //==================================================
+  // Brand Colors
+  //==================================================
+
+  static const Color primary = Color(0xFF7B2D26);
+
+  static const Color secondary = Color(0xFF8B5E3C);
+
+  static const Color accent = Color(0xFF4CAF50);
+
+  //==================================================
+  // Background Colors
+  //==================================================
+
+  static const Color background = Color(0xFFFFF8E7);
+
+  static const Color surface = Color(0xFFFFFFFF);
+
+  static const Color card = Color(0xFFFFFFFF);
+
+  //==================================================
+  // Text Colors
+  //==================================================
+
+  static const Color textDark = Color(0xFF212121);
+
+  static const Color textMedium = Color(0xFF616161);
+
+  static const Color textLight = Color(0xFFFFFFFF);
+
+  static const Color textHint = Color(0xFF9E9E9E);
+
+  //==================================================
+  // Status Colors
+  //==================================================
+
+  static const Color success = Color(0xFF4CAF50);
+
+  static const Color warning = Color(0xFFFF9800);
+
+  static const Color error = Color(0xFFE53935);
+
+  static const Color info = Color(0xFF2196F3);
+
+  //==================================================
   // Neutral Colors
-  // =========================
+  //==================================================
 
   static const Color white = Color(0xFFFFFFFF);
 
@@ -22,51 +61,27 @@ class AppColors {
 
   static const Color transparent = Colors.transparent;
 
-  // =========================
-  // Primary Brand Colors
-  // =========================
+  //==================================================
+  // Effects
+  //==================================================
 
-  /// Rich Maroon
-  static const Color primary = Color(0xFF7B2D26);
+  static const Color shadow = Color(0x1A000000);
 
-  /// Warm Brown
-  static const Color secondary = Color(0xFF8B5E3C);
+  static const Color overlay = Color(0x66000000);
 
-  /// Fresh Green
-  static const Color accent = Color(0xFF4CAF50);
+  //==================================================
+  // Food Colors
+  //==================================================
 
-  /// Soft Cream Background
-  static const Color background = Color(0xFFFFF8E7);
+  static const Color veg = Color(0xFF2E7D32);
 
-  // =========================
-  // Surface Colors
-  // =========================
+  static const Color nonVeg = Color(0xFFC62828);
 
-  static const Color surface = white;
+  static const Color offer = Color(0xFFFF6F00);
 
-  static const Color card = Color(0xFFFFFCF5);
+  static const Color favorite = Color(0xFFE91E63);
 
-  // =========================
-  // Text Colors
-  // =========================
-
-  static const Color textPrimary = Color(0xFF2E2E2E);
-
-  static const Color textSecondary = Color(0xFF6B6B6B);
-
-  static const Color textLight = white;
-
-  // =========================
-  // Status Colors
-  // =========================
-
-  static const Color success = Color(0xFF2E7D32);
-
-  static const Color warning = Color(0xFFFF9800);
-
-  static const Color error = Color(0xFFD32F2F);
-
-  static const Color info = Color(0xFF1976D2);
+  static const Color rating = Color(0xFFFFC107);
 
   // =========================
   // Borders & Divider
@@ -75,11 +90,5 @@ class AppColors {
   static const Color border = Color(0xFFE0E0E0);
 
   static const Color divider = Color(0xFFEEEEEE);
-
-  // =========================
-  // Miscellaneous
-  // =========================
-
-  static const Color shadow = Color(0x33000000);
 
 }

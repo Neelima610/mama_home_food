@@ -1,34 +1,116 @@
 import 'package:flutter/material.dart';
 
+import '../../../data/repositories/cart_repository.dart';
+import '../../../models/cart/cart_model.dart';
 import '../../../models/product/product_model.dart';
 
 class CartProvider extends ChangeNotifier {
-  final List<ProductModel> _cartItems = [];
+  List<CartModel> _cartItems = [];
 
-  List<ProductModel> get cartItems =>
-      _cartItems;
+  //--------------------------------------------------
+  // Getters
+  //--------------------------------------------------
 
-  int get itemCount => _cartItems.length;
+  List<CartModel> get cartItems => _cartItems;
 
-  void addToCart(ProductModel product) {
-    _cartItems.add(product);
+  double get totalPrice =>
+      CartRepository.getTotalPrice();
+
+  double get subtotal => totalPrice;
+
+double get deliveryCharge {
+  return subtotal >= 499 ? 0 : 40;
+}
+
+double get discount {
+  return subtotal >= 799 ? 50 : 0;
+}
+
+double get grandTotal {
+  return subtotal +
+      deliveryCharge -
+      discount;
+}
+
+  int get totalItems =>
+      CartRepository.getTotalItems();
+  
+
+  bool get isEmpty => _cartItems.isEmpty;
+
+  //--------------------------------------------------
+  // Load Cart
+  //--------------------------------------------------
+
+  void loadCart() {
+    _cartItems = CartRepository.getCartItems();
     notifyListeners();
   }
 
-  void removeFromCart(ProductModel product) {
-    _cartItems.remove(product);
-    notifyListeners();
+  //--------------------------------------------------
+  // Add Product
+  //--------------------------------------------------
+
+  void addToCart(
+    ProductModel product, {
+    int quantity = 1,
+  }) {
+    CartRepository.addToCart(
+      product,
+      quantity: quantity,
+    );
+
+    loadCart();
   }
+
+  //--------------------------------------------------
+  // Remove Product
+  //--------------------------------------------------
+
+  void removeFromCart(
+    String productId,
+  ) {
+    CartRepository.removeFromCart(
+      productId,
+    );
+
+    loadCart();
+  }
+
+  //--------------------------------------------------
+  // Increase Quantity
+  //--------------------------------------------------
+
+  void increaseQuantity(
+    String productId,
+  ) {
+    CartRepository.increaseQuantity(
+      productId,
+    );
+
+    loadCart();
+  }
+
+  //--------------------------------------------------
+  // Decrease Quantity
+  //--------------------------------------------------
+
+  void decreaseQuantity(
+    String productId,
+  ) {
+    CartRepository.decreaseQuantity(
+      productId,
+    );
+
+    loadCart();
+  }
+
+  //--------------------------------------------------
+  // Clear Cart
+  //--------------------------------------------------
 
   void clearCart() {
-    _cartItems.clear();
-    notifyListeners();
-  }
-
-  double get totalAmount {
-    return _cartItems.fold(
-      0,
-      (sum, item) => sum + item.price,
-    );
+    CartRepository.clearCart();
+    loadCart();
   }
 }

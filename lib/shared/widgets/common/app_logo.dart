@@ -18,14 +18,14 @@ class AppLogo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Image.asset(
       AppAssets.appLogo,
-      width: width ?? AppSizes.logoMedium,
-      height: height ?? width ?? AppSizes.logoMedium,
+      width: width ?? AppSizes.logoM,
+      height: height ?? width ?? AppSizes.logoM,
       fit: fit,
       filterQuality: FilterQuality.high,
       errorBuilder: (context, error, stackTrace) {
         return Icon(
           Icons.restaurant,
-          size: width ?? AppSizes.logoMedium,
+          size: width ?? AppSizes.logoM,
           color: Theme.of(context).colorScheme.primary,
         );
       },

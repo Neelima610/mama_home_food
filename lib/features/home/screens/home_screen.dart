@@ -6,9 +6,9 @@ import '../../../core/theme/themes.dart';
 import '../../../data/repositories/repositories.dart';
 
 import '../widgets/banner_slider.dart';
-import '../widgets/category_card.dart';
+import '../../../shared/widgets/cards/category_card.dart';
 import '../widgets/home_app_bar.dart';
-import '../widgets/product_card.dart';
+import '../../../shared/widgets/cards/product_card.dart';
 import '../widgets/search_box.dart';
 
 class HomeScreen extends StatelessWidget {

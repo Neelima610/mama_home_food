@@ -1,10 +1,19 @@
+
+// app_router.dart
 import 'package:flutter/material.dart';
 import 'package:mama_home_food/features/splash/screens/splash_screen.dart';
 
+import '../../features/authentication/screens/otp_screen.dart';
+import '../../features/checkout/screens/checkout_screen.dart';
+import '../../features/orders/screens/order_details_screen.dart';
+import '../../features/orders/screens/orders_screen.dart';
+import '../../features/product/screens/product_screen.dart';
 import '../../models/category/category_model.dart';
 import '../../features/category/screens/category_screen.dart';
 // import '../../screens/home/home_screen.dart';
 import '../../features/navigation/screens/navigation_screen.dart';
+import '../../models/order/order_model.dart';
+import '../../models/product/product_model.dart';
 import 'route_names.dart';
 
 
@@ -25,8 +34,11 @@ class AppRouter {
         );
 
       case RouteNames.category:
-        final category =
-      settings.arguments as CategoryModel;
+        if (settings.arguments is! CategoryModel) {
+  return _buildRoute(const _PageNotFound());
+}
+
+final category = settings.arguments as CategoryModel;
 
   return _buildRoute(
     CategoryScreen(
@@ -34,10 +46,18 @@ class AppRouter {
     ),
   );
 
-      case RouteNames.productDetails:
-        return _buildRoute(
-          const _PlaceholderScreen(title: 'Product Details'),
-        );
+      case RouteNames.product:
+      if (settings.arguments is! ProductModel) {
+  return _buildRoute(const _PageNotFound());
+}
+        final product =
+      settings.arguments as ProductModel;
+
+  return _buildRoute(
+    ProductScreen(
+      product: product,
+    ),
+  );
 
       case RouteNames.cart:
         return _buildRoute(
@@ -51,7 +71,7 @@ class AppRouter {
 
       case RouteNames.otp:
         return _buildRoute(
-          const _PlaceholderScreen(title: 'OTP Verification'),
+          const OtpScreen(),
         );
 
       case RouteNames.profile:
@@ -66,7 +86,7 @@ class AppRouter {
 
       case RouteNames.checkout:
         return _buildRoute(
-          const _PlaceholderScreen(title: 'Checkout'),
+           const CheckoutScreen(),
         );
 
       case RouteNames.payment:
@@ -76,8 +96,23 @@ class AppRouter {
 
       case RouteNames.orders:
         return _buildRoute(
-          const _PlaceholderScreen(title: 'Orders'),
+          const OrdersScreen(),
         );
+       case RouteNames.orderDetails:
+  if (settings.arguments is! OrderModel) {
+    return _buildRoute(
+      const _PageNotFound(),
+    );
+  }
+
+  final order =
+      settings.arguments as OrderModel;
+
+  return _buildRoute(
+    OrderDetailsScreen(
+      order: order,
+    ),
+  ); 
 
       case RouteNames.navigation:
   return _buildRoute(
@@ -164,3 +199,4 @@ class _PageNotFound extends StatelessWidget {
     );
   }
 }
+

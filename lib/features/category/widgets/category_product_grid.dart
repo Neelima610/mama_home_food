@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../models/product/product_model.dart';
-import '../../home/widgets/product_card.dart';
+import '../../../shared/widgets/cards/product_card.dart';
 
 class CategoryProductGrid extends StatelessWidget {
   const CategoryProductGrid({

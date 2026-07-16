@@ -65,7 +65,7 @@ class BannerSlider extends StatelessWidget {
                   Text(
                     "Healthy • Hygienic • Delicious",
                     style: AppTextStyles.bodyMedium.copyWith(
-                      color: AppColors.white.withOpacity(0.9),
+                      color: AppColors.white.withValues(alpha: 0.9),
                     ),
                   ),
 

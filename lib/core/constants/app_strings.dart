@@ -1,3 +1,4 @@
+// app_strings.dart
 /// All user-visible strings used throughout the application.
 ///
 /// Do not hardcode text directly in widgets.
@@ -15,7 +16,7 @@ class AppStrings {
 
   static const String welcome = 'Welcome';
 
-  static const String welcomeBack = 'Welcome Back';
+  static const String welcomeBack = 'Welcome Back!';
 
   // ==========================================================
   // Home Screen
@@ -77,21 +78,52 @@ class AppStrings {
   // Cart
   // ==========================================================
 
-  static const String cart = 'Cart';
+  static const cart = "My Cart";
 
-  static const String cartEmpty = 'Your cart is empty';
+  static const emptyCartTitle = "Your Cart is Empty";
+  static const priceDetails = "Price Details";
+  static const emptyCartSubtitle =
+      "Looks like you haven't added any delicious food yet.";
 
-  static const String total = 'Total';
+  static const startShopping = "Start Shopping";
+
+  static const proceedToCheckout = "Proceed to Checkout";
+
+  static const subtotal = "Subtotal";
+
+  static const delivery = "Delivery";
+  static const deliveryCharge = "Delivery Charge";
+
+  static const discount = "Discount";
+
+  static const total = "Total";
+  static const grandTotal = "Grand Total";
+
+  static const free = "FREE";
 
   // ==========================================================
   // Orders
   // ==========================================================
 
-  static const String orders = 'Orders';
+  static const myOrders = "My Orders";
+  static const viewDetails = "View Details";
+  static const items = "Items";
 
   static const String orderHistory = 'Order History';
 
   static const String orderPlaced = 'Order Placed Successfully';
+  static const noOrdersFound = "No orders found";
+
+  static const noOrdersYet = "No Orders Yet";
+
+static const noOrdersSubtitle =
+    "You haven't placed any orders yet.";
+
+    static const orderDetails = "Order Details";
+static const orderId = "Order ID";
+static const orderDate = "Order Date";
+
+
 
   // ==========================================================
   // Profile
@@ -108,6 +140,9 @@ class AppStrings {
   // ==========================================================
 
   static const String mobileNumber = 'Mobile Number';
+
+  static const enterPhoneNumber = "Enter your phone number";
+  static const countryCode = "+91";
 
   static const String enterOtp = 'Enter OTP';
 
@@ -136,8 +171,80 @@ class AppStrings {
   static const String somethingWentWrong =
       'Something went wrong. Please try again.';
 
-  static const String internetUnavailable =
-      'No internet connection.';
+  static const String internetUnavailable = 'No internet connection.';
 
   static const String madeWithLove = 'Made with ❤️ in India';
+
+  static const String vegetarian = "Vegetarian";
+  static const String nonVegetarian = "Non-Vegetarian";
+
+  static const String available = "Available";
+  static const String outOfStock = "Out of Stock";
+
+  static const String featured = "Featured";
+
+  static const description = "Description";
+
+  static const similarProducts = "Similar Products";
+
+  static const deliveryAddress = "Delivery Address";
+
+  static const editAddress = "Edit Address";
+  static const orderSummary = "Order Summary";
+  static const paymentMethod = "Payment Method";
+
+  static const cashOnDelivery = "Cash on Delivery";
+
+  static const upi = "UPI";
+
+  static const cardPayment = "Credit / Debit Card";
+
+  static const applyCoupon = "Apply Coupon";
+
+  static const enterCoupon = "Enter Coupon Code";
+
+  static const otpVerification = "OTP Verification";
+
+  static const continueButton = "Continue";
+
+  static const appTagline = "Fresh • Homemade • Healthy";
+
+  static const loginSubtitle = "Sign in to continue";
+
+  static const otpSubtitle = "Enter the verification code sent to your phone";
+  static const didNotReceiveCode = "Didn't receive the code?";
+
+  static const resendOtp = "Resend OTP";
+
+  static const resendOtpIn = "Resend OTP in";
+
+  static const otpSent = "OTP sent to";
+
+  static const otpSentAgain = "OTP sent again";
+
+  // ==========================================================
+  // Validation Messages
+  // ==========================================================
+
+  static const phoneRequired = "Phone number is required";
+
+  static const invalidPhone = "Enter a valid mobile number";
+
+  static const otpRequired = "OTP is required";
+
+  static const invalidOtp = "Enter a valid 6-digit OTP";
+
+  static const nameRequired = "Name is required";
+
+  static const invalidName = "Enter a valid name";
+
+  static const shortName = "Name must be at least 3 characters";
+
+  static const emailRequired = "Email is required";
+
+  static const invalidEmail = "Enter a valid email address";
+
+  static const passwordRequired = "Password is required";
+
+  static const shortPassword = "Password must be at least 6 characters";
 }

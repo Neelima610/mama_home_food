@@ -1,3 +1,5 @@
+
+// app_Sizes.dart
 // import 'package:flutter/material.dart';
 
 /// Application-wide UI sizes.
@@ -23,17 +25,15 @@ class AppSizes {
   // Spacing
   // ==========================================================
 
-  static const double spaceXS = 4.0;
-
-  static const double spaceS = 8.0;
-
-  static const double spaceM = 12.0;
-
-  static const double spaceL = 16.0;
-
-  static const double spaceXL = 24.0;
-
-  static const double spaceXXL = 32.0;
+static const double spaceXS = 4.0;
+static const double spaceS = 8.0;
+static const double spaceM = 12.0;
+static const double spaceL = 16.0;
+static const double spaceXL = 24.0;
+static const double spaceXXL = 32.0;
+static const double spaceXXXL = 40.0;
+static const double spaceHuge = 48.0;
+static const double spaceMassive = 64.0;
 
   // ==========================================================
   // Border Radius
@@ -101,8 +101,6 @@ class AppSizes {
   // Animation
   // ==========================================================
 
-  static const Duration animationDuration =
-      Duration(milliseconds: 300);
 
 
   // ==========================================================
@@ -118,19 +116,21 @@ class AppSizes {
   // ==========================================================
 // Text Sizes
 // ==========================================================
-
-static const double textSmall = 12;
-static const double textMedium = 14;
-static const double textLarge = 16;
-static const double textXLarge = 20;
+static const double fontXS = 8;
+static const double fontS = 12;
+static const double fontM = 14;
+static const double fontL = 16;
+static const double fontXL = 20;
+static const double fontXXL =24;
 
 // ==========================================================
 // Logo Sizes
 // ==========================================================
-
-static const double logoSmall = 50;
-static const double logoMedium = 100;
-static const double logoLarge = 170;
+static const double logoXS = 30;
+static const double logoS = 50;
+static const double logoM = 100;
+static const double logoL = 170;
+static const double logoXL = 220;
 
 // ==========================================================
 // Avatar Sizes
@@ -140,3 +140,5 @@ static const double avatarSmall = 40;
 static const double avatarMedium = 60;
 static const double avatarLarge = 90;
   }
+
+  

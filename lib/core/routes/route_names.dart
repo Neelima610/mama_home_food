@@ -1,3 +1,5 @@
+
+// route_names.dart
 /// Defines all named routes used in the application.
 ///
 /// Never hardcode route names.
@@ -15,7 +17,7 @@ class RouteNames {
   static const String category = '/category';
 
   // Product
-  static const String productDetails = '/product-details';
+  static const String product = '/product';
 
   // Cart
   static const String cart = '/cart';
@@ -37,6 +39,8 @@ class RouteNames {
 
   // Orders
   static const String orders = '/orders';
+  static const String orderDetails =
+    "/order-details";
 
   static const String orderHistory = '/order-history';
 

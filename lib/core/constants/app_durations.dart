@@ -1,3 +1,5 @@
+
+// app_duration.dart
 class AppDurations {
   AppDurations._();
 

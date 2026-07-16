@@ -1,3 +1,4 @@
+// app_assets.dart
 /// Centralized asset paths used throughout the application.
 ///
 /// Never hardcode asset paths in widgets.
@@ -47,11 +48,9 @@ class AppAssets {
   // Placeholder Images
   // ==========================================================
 
-  static const String productPlaceholder =
-      '$_images/product_placeholder.png';
+  static const String productPlaceholder = '$_images/product_placeholder.png';
 
-  static const String profilePlaceholder =
-      '$_images/profile_placeholder.png';
+  static const String profilePlaceholder = '$_images/profile_placeholder.png';
 
   // ==========================================================
   // Icons
@@ -64,6 +63,24 @@ class AppAssets {
   // ==========================================================
 
   static const String sampleProduct = '$_products/sample_product.jpg';
+
+  static const String vegMeals = '$_products/veg_meals.png';
+
+  static const String miniMeals = '$_products/mini_meals.png';
+
+  static const String mangoPickle = '$_products/mango_pickle.png';
+
+  static const String gonguraPickle = '$_products/gongura_pickle.png';
+
+  static const String karamPodi = '$_products/karam_podi.png';
+
+  static const String murukulu = '$_products/murukulu.png';
+
+  static const String boondiLaddu = '$_products/boondi_laddu.png';
+
+  static const String monthlyPlan = '$_products/monthly_plan.png';
+
+  static const String birthdayCatering = '$_products/birthday_catering.png';
 
   // ==========================================================
   // Animations

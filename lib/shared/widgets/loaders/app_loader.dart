@@ -7,10 +7,12 @@ class AppLoader extends StatelessWidget {
     super.key,
     this.size = 28,
     this.strokeWidth = 2.5,
+    this.color = AppColors.textLight,
   });
 
   final double size;
   final double strokeWidth;
+  final Color color;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +21,7 @@ class AppLoader extends StatelessWidget {
       height: size,
       child: CircularProgressIndicator(
         strokeWidth: strokeWidth,
-        color: AppColors.textLight,
+        color: color,
       ),
     );
   }

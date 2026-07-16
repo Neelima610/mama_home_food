@@ -10,6 +10,7 @@ class ProductData {
       description:
           "Fresh homemade Andhra-style vegetarian meals served with rice, dal, curry, pickle, papad and curd.",
       image: "",
+      // AppAssets.vegMeals,
       price: 120,
       oldPrice: 150,
       rating: 4.9,

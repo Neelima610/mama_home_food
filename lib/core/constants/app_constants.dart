@@ -1,3 +1,5 @@
+
+// app_constants.dart
 /// Application-wide business constants.
 ///
 /// This file should contain information related to the application
@@ -45,9 +47,10 @@ class AppConstants {
   // Default Values
   // ==========================================================
 
-  static const int bannerAutoPlaySeconds = 4;
-
   static const int otpLength = 6;
+  // ==========================================================
+// Authentication
+// ==========================================================
 
-  static const Duration splashDuration = Duration(seconds: 5);
+
 }

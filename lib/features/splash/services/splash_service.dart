@@ -8,7 +8,7 @@ import '../../../core/routes/route_names.dart';
 class SplashService {
   void start(BuildContext context) {
     Timer(
-      AppConstants.splashDuration,
+      AppDurations.splash,
       () {
         if (!context.mounted) return;
 

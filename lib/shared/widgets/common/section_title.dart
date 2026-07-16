@@ -39,7 +39,7 @@ class SectionTitle extends StatelessWidget {
                   style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
-                    color: AppColors.textPrimary,
+                    color: AppColors.textDark,
                   ),
                 ),
 
@@ -52,7 +52,7 @@ class SectionTitle extends StatelessWidget {
                     subtitle!,
                     style: const TextStyle(
                       fontSize: 13,
-                      color: AppColors.textSecondary,
+                      color: AppColors.textMedium,
                     ),
                   ),
                 ],

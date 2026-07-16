@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/colors/colors.dart';
-import '../../../core/constants/constants.dart';
+import '../../core/colors/colors.dart';
+import '../../core/constants/constants.dart';
+import '../../core/theme/app_text_styles.dart';
 
 class CustomAppBar extends StatelessWidget
     implements PreferredSizeWidget {
@@ -28,39 +29,43 @@ class CustomAppBar extends StatelessWidget
   Widget build(BuildContext context) {
     return AppBar(
       automaticallyImplyLeading: false,
+      backgroundColor:
+          backgroundColor ?? AppColors.primary,
+      foregroundColor: AppColors.white,
+      elevation: elevation,
+      centerTitle: centerTitle,
+      surfaceTintColor: Colors.transparent,
+      scrolledUnderElevation: 0,
 
       leading: showBackButton
           ? IconButton(
-              icon: const Icon(Icons.arrow_back_ios_new_rounded),
+              icon: const Icon(
+                Icons.arrow_back_ios_new_rounded,
+                size: AppSizes.iconMedium,
+              ),
               onPressed: () => Navigator.pop(context),
             )
           : leading,
 
       title: Text(
         title,
-        style: const TextStyle(
-          fontSize: 20,
-          fontWeight: FontWeight.w700,
+        style: AppTextStyles.heading2.copyWith(
           color: AppColors.white,
         ),
       ),
-
-      centerTitle: centerTitle,
-
-      backgroundColor:
-          backgroundColor ?? AppColors.primary,
-
-      elevation: elevation,
 
       actions: actions,
 
       iconTheme: const IconThemeData(
         color: AppColors.white,
+        size: AppSizes.iconMedium,
       ),
     );
   }
 
   @override
   Size get preferredSize =>
-      const Size.fromHeight(AppSizes.appBarHeight);
+      const Size.fromHeight(
+        AppSizes.appBarHeight,
+      );
 }

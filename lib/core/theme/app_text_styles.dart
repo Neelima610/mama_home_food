@@ -1,180 +1,179 @@
+
+// app_text_styles.dart
 import 'package:flutter/material.dart';
 
 import '../colors/colors.dart';
 
-/// Centralized text styles for the entire application.
-///
-/// Never create TextStyle directly inside widgets.
-/// Always use AppTextStyles.
 class AppTextStyles {
   AppTextStyles._();
 
-  // ==========================================================
-  // Display Styles
-  // ==========================================================
+  //==================================================
+  // Display
+  //==================================================
 
-  static const TextStyle displayLarge = TextStyle(
-    fontFamily: 'Poppins',
+  static const displayLarge = TextStyle(
+    fontSize: 36,
+    fontWeight: FontWeight.bold,
+    color: AppColors.textDark,
+  );
+
+  static const displayMedium = TextStyle(
     fontSize: 32,
     fontWeight: FontWeight.bold,
-    color: AppColors.textPrimary,
+    color: AppColors.textDark,
   );
 
-  static const TextStyle displayMedium = TextStyle(
-    fontFamily: 'Poppins',
+  static const displaySmall = TextStyle(
     fontSize: 28,
     fontWeight: FontWeight.bold,
-    color: AppColors.textPrimary,
+    color: AppColors.textDark,
   );
 
-  // ==========================================================
+  //==================================================
   // Headings
-  // ==========================================================
+  //==================================================
 
-  static const TextStyle heading1 = TextStyle(
-    fontFamily: 'Poppins',
+  static const heading1 = TextStyle(
     fontSize: 24,
     fontWeight: FontWeight.bold,
-    color: AppColors.textPrimary,
+    color: AppColors.textDark,
   );
 
-  static const TextStyle heading2 = TextStyle(
-    fontFamily: 'Poppins',
+  static const heading2 = TextStyle(
     fontSize: 20,
     fontWeight: FontWeight.w700,
-    color: AppColors.textPrimary,
+    color: AppColors.textDark,
   );
 
-  static const TextStyle heading3 = TextStyle(
-    fontFamily: 'Poppins',
+  static const heading3 = TextStyle(
     fontSize: 18,
     fontWeight: FontWeight.w600,
-    color: AppColors.textPrimary,
+    color: AppColors.textDark,
   );
 
-  // ==========================================================
+  //==================================================
   // Titles
-  // ==========================================================
+  //==================================================
 
-  static const TextStyle titleLarge = TextStyle(
-    fontFamily: 'Poppins',
+  static const titleLarge = TextStyle(
     fontSize: 18,
-    fontWeight: FontWeight.bold,
-    color: AppColors.textPrimary,
+    fontWeight: FontWeight.w600,
+    color: AppColors.textDark,
   );
 
-  static const TextStyle titleMedium = TextStyle(
-    fontFamily: 'Poppins',
+  static const titleMedium = TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.w600,
-    color: AppColors.textPrimary,
+    color: AppColors.textDark,
   );
 
-  static const TextStyle titleSmall = TextStyle(
-    fontFamily: 'Poppins',
+  static const titleSmall = TextStyle(
     fontSize: 14,
     fontWeight: FontWeight.w600,
-    color: AppColors.textPrimary,
+    color: AppColors.textDark,
   );
 
-  // ==========================================================
+  //==================================================
   // Body
-  // ==========================================================
+  //==================================================
 
-  static const TextStyle bodyLarge = TextStyle(
-    fontFamily: 'Poppins',
+  static const bodyLarge = TextStyle(
     fontSize: 16,
-    fontWeight: FontWeight.w400,
-    color: AppColors.textPrimary,
+    fontWeight: FontWeight.normal,
+    color: AppColors.textDark,
   );
 
-  static const TextStyle bodyMedium = TextStyle(
-    fontFamily: 'Poppins',
+  static const bodyMedium = TextStyle(
     fontSize: 14,
-    fontWeight: FontWeight.w400,
-    color: AppColors.textPrimary,
+    fontWeight: FontWeight.normal,
+    color: AppColors.textMedium,
   );
 
-  static const TextStyle bodySmall = TextStyle(
-    fontFamily: 'Poppins',
+  static const bodySmall = TextStyle(
     fontSize: 12,
-    fontWeight: FontWeight.w400,
-    color: AppColors.textSecondary,
+    fontWeight: FontWeight.normal,
+    color: AppColors.textMedium,
   );
 
-  // ==========================================================
-  // Buttons
-  // ==========================================================
+  //==================================================
+  // Labels
+  //==================================================
 
-  static const TextStyle button = TextStyle(
-    fontFamily: 'Poppins',
-    fontSize: 16,
+  static const labelLarge = TextStyle(
+    fontSize: 14,
     fontWeight: FontWeight.w600,
+    color: AppColors.textDark,
+  );
+
+  static const labelMedium = TextStyle(
+    fontSize: 12,
+    fontWeight: FontWeight.w500,
+    color: AppColors.textMedium,
+  );
+
+  static const labelSmall = TextStyle(
+    fontSize: 10,
+    fontWeight: FontWeight.w500,
+    color: AppColors.textHint,
+  );
+
+  //==================================================
+  // Buttons
+  //==================================================
+
+  static const button = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.bold,
     color: AppColors.white,
   );
 
-  // ==========================================================
-  // Labels
-  // ==========================================================
-
-  static const TextStyle labelLarge = TextStyle(
-    fontFamily: 'Poppins',
-    fontSize: 14,
-    fontWeight: FontWeight.w600,
-    color: AppColors.textPrimary,
-  );
-
-  static const TextStyle labelMedium = TextStyle(
-    fontFamily: 'Poppins',
-    fontSize: 12,
-    fontWeight: FontWeight.w500,
-    color: AppColors.textSecondary,
-  );
-
-  static const TextStyle labelSmall = TextStyle(
-    fontFamily: 'Poppins',
-    fontSize: 10,
-    fontWeight: FontWeight.w500,
-    color: AppColors.textSecondary,
-  );
-
-  // ==========================================================
+  //==================================================
   // Price
-  // ==========================================================
+  //==================================================
 
-  static const TextStyle price = TextStyle(
-    fontFamily: 'Poppins',
-    fontSize: 20,
+  static const price = TextStyle(
+    fontSize: 24,
     fontWeight: FontWeight.bold,
     color: AppColors.primary,
   );
 
-  static const TextStyle oldPrice = TextStyle(
-    fontFamily: 'Poppins',
-    fontSize: 14,
+  static const oldPrice = TextStyle(
+    fontSize: 16,
     fontWeight: FontWeight.w500,
     color: AppColors.grey,
     decoration: TextDecoration.lineThrough,
   );
 
-  // ==========================================================
-  // Rating
-  // ==========================================================
+  //==================================================
+  // Caption
+  //==================================================
+
+  static const caption = TextStyle(
+    fontSize: 11,
+    fontWeight: FontWeight.normal,
+    color: AppColors.textHint,
+  );
 
   static const TextStyle rating = TextStyle(
     fontFamily: 'Poppins',
     fontSize: 13,
     fontWeight: FontWeight.w600,
-    color: AppColors.textPrimary,
+    color: AppColors.textDark,
   );
 
-  // ==========================================================
-  // Caption
-  // ==========================================================
+  static const TextStyle appBarTitle = TextStyle(
+  fontSize: 20,
+  fontWeight: FontWeight.w600,
+  color: AppColors.textDark,
+);
 
-  static const TextStyle caption = TextStyle(
-    fontFamily: 'Poppins',
-    fontSize: 11,
-    color: AppColors.textSecondary,
-  );
+static const TextStyle sectionTitle = TextStyle(
+  fontSize: 18,
+  fontWeight: FontWeight.bold,
+);
+
+static const TextStyle chip = TextStyle(
+  fontSize: 12,
+  fontWeight: FontWeight.w500,
+);
 }
