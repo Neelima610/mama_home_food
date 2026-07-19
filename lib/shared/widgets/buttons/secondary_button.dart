@@ -16,7 +16,7 @@ class SecondaryButton extends StatelessWidget {
   final String text;
   final VoidCallback? onPressed;
   final IconData? icon;
-  final double width;
+  final double? width;
   final double height;
 
   @override
@@ -34,7 +34,7 @@ class SecondaryButton extends StatelessWidget {
           ),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(
-              AppSizes.radiusMedium,
+              AppSizes.radiusM,
             ),
           ),
         ),

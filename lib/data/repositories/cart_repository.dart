@@ -1,3 +1,6 @@
+
+
+// cart_repository.dart
 import '../../models/cart/cart_model.dart';
 import '../../models/product/product_model.dart';
 import '../dummy/cart_data.dart';
@@ -14,11 +17,24 @@ class CartRepository {
     return List.unmodifiable(_cartItems);
   }
 
+  //--------------------------------------------------
+// Check Product Exists
+//--------------------------------------------------
+
+static bool containsProduct(
+  String productId,
+) {
+  return _cartItems.any(
+    (item) => item.product.id == productId,
+  );
+}
+
   /// Add product to cart
   static void addToCart(
     ProductModel product, {
     int quantity = 1,
   }) {
+     if (quantity <= 0) return;
     final index = _cartItems.indexWhere(
       (item) => item.product.id == product.id,
     );
@@ -99,6 +115,17 @@ class CartRepository {
     );
   }
 
+  //--------------------------------------------------
+// Subtotal
+//--------------------------------------------------
+
+static double getSubtotal() {
+  return _cartItems.fold(
+    0,
+    (sum, item) => sum + item.totalPrice,
+  );
+}
+
   /// Total items
   static int getTotalItems() {
     return _cartItems.fold(
@@ -106,4 +133,11 @@ class CartRepository {
       (total, item) => total + item.quantity,
     );
   }
+  //--------------------------------------------------
+// Unique Products
+//--------------------------------------------------
+
+static int getUniqueItemsCount() {
+  return _cartItems.length;
+}
 }

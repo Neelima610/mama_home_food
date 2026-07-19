@@ -7,27 +7,34 @@ import '../../../core/constants/constants.dart';
 import '../../../core/routes/route_names.dart';
 import '../../../shared/widgets/buttons/primary_button.dart';
 import '../providers/auth_provider.dart';
-import '../services/auth_service.dart';
 import '../widgets/auth_app_bar.dart';
 import '../widgets/login_header.dart';
 import '../widgets/otp_text_field.dart';
 import '../widgets/resend_timer.dart';
 
 class OtpScreen extends StatefulWidget {
-  const OtpScreen({super.key});
+  const OtpScreen({
+    super.key,
+  });
 
   @override
-  State<OtpScreen> createState() => _OtpScreenState();
+  State<OtpScreen> createState() =>
+      _OtpScreenState();
 }
 
-class _OtpScreenState extends State<OtpScreen> {
-  late final TextEditingController _otpController;
+class _OtpScreenState
+    extends State<OtpScreen> {
+  //--------------------------------------------------
+  // Controller
+  //--------------------------------------------------
 
-  @override
-  void initState() {
-    super.initState();
-    _otpController = TextEditingController();
-  }
+  final TextEditingController
+      _otpController =
+      TextEditingController();
+
+  //--------------------------------------------------
+  // Dispose
+  //--------------------------------------------------
 
   @override
   void dispose() {
@@ -35,79 +42,163 @@ class _OtpScreenState extends State<OtpScreen> {
     super.dispose();
   }
 
+  //--------------------------------------------------
+  // Verify OTP
+  //--------------------------------------------------
+
   Future<void> _verifyOtp() async {
     FocusScope.of(context).unfocus();
 
-    final provider = context.read<AuthProvider>();
+    final provider =
+        context.read<AuthProvider>();
 
-    provider.setLoading(true);
+    final otp =
+        _otpController.text.trim();
 
-    final success = await AuthService.verifyOtp(
-      _otpController.text.trim(),
-    );
+    //--------------------------------------------------
+    // Validate OTP
+    //--------------------------------------------------
 
-    provider.setLoading(false);
+    if (otp.length != 6) {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(
+        const SnackBar(
+          content: Text(
+            AppStrings.invalidOtp,
+          ),
+          duration:
+              AppDurations.snackbar,
+        ),
+      );
 
-    if (!mounted) return;
+      return;
+    }
 
-    if (success) {
-      provider.login();
+    //--------------------------------------------------
+    // Save OTP
+    //--------------------------------------------------
 
+    provider.setOtp(otp);
+
+    //--------------------------------------------------
+    // Verify OTP
+    //--------------------------------------------------
+
+    await provider.verifyOtp(otp);
+
+    if (!mounted) {
+      return;
+    }
+
+    //--------------------------------------------------
+    // Error
+    //--------------------------------------------------
+
+    if (provider.hasError) {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(
+        SnackBar(
+          content: Text(
+            provider.errorMessage!,
+          ),
+          duration:
+              AppDurations.snackbar,
+        ),
+      );
+
+      return;
+    }
+
+    //--------------------------------------------------
+    // Success
+    //--------------------------------------------------
+
+    if (provider.isAuthenticated) {
       Navigator.pushNamedAndRemoveUntil(
         context,
         RouteNames.home,
         (route) => false,
       );
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text(
-            AppStrings.invalidOtp,
-          ),
-          duration: AppDurations.snackbar,
-        ),
-      );
     }
   }
 
-  Future<void> _resendOtp() async {
-    final authProvider = context.read<AuthProvider>();
+  //--------------------------------------------------
+  // Resend OTP
+  //--------------------------------------------------
 
-    await AuthService.sendOtp(
-      authProvider.phoneNumber,
-    );
+ Future<void> _resendOtp() async {
+  final provider =
+      context.read<AuthProvider>();
 
-    if (!mounted) return;
-
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text(
-          AppStrings.otpSentAgain,
-        ),
-        duration: AppDurations.snackbar,
-      ),
-    );
+  if (!provider.hasPhoneNumber) {
+    return;
   }
 
+  await provider.sendOtp();
+
+  if (!mounted) {
+    return;
+  }
+
+  if (provider.hasError) {
+    ScaffoldMessenger.of(context)
+        .showSnackBar(
+      SnackBar(
+        content: Text(
+          provider.errorMessage!,
+        ),
+        duration:
+            AppDurations.snackbar,
+      ),
+    );
+
+    return;
+  }
+
+  ScaffoldMessenger.of(context)
+      .showSnackBar(
+    const SnackBar(
+      content: Text(
+        AppStrings.otpSentAgain,
+      ),
+      duration:
+          AppDurations.snackbar,
+    ),
+  );
+}
+
+  //--------------------------------------------------
+  // Build
+  //--------------------------------------------------
+
   @override
-  Widget build(BuildContext context) {
-    final authProvider = context.watch<AuthProvider>();
+  Widget build(
+    BuildContext context,
+  ) {
+    final provider =
+        context.watch<AuthProvider>();
 
     return Scaffold(
       appBar: const AuthAppBar(
-        title: AppStrings.otpVerification,
+        title:
+            AppStrings.otpVerification,
       ),
+
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(
             AppSizes.screenPadding,
           ),
+
           child: Column(
             crossAxisAlignment:
                 CrossAxisAlignment.stretch,
+
             children: [
+
               const SizedBox(
-                height: AppSizes.spaceXL,
+                height:
+                    AppSizes.spaceXL,
               ),
 
               //--------------------------------------------------
@@ -115,37 +206,51 @@ class _OtpScreenState extends State<OtpScreen> {
               //--------------------------------------------------
 
               LoginHeader(
-                title: AppStrings.otpVerification,
+                title:
+                    AppStrings
+                        .otpVerification,
+
                 subtitle:
-                    "${AppStrings.otpSent} +91 ${authProvider.phoneNumber}",
+                    '${AppStrings.otpSent} '
+                    '${AppStrings.countryCode} '
+                    '${provider.phoneNumber}',
               ),
 
               const SizedBox(
-                height: AppSizes.spaceXXXL,
+                height:
+                    AppSizes.spaceXXXL,
               ),
 
               //--------------------------------------------------
-              // OTP TextField
+              // OTP Field
               //--------------------------------------------------
 
               OtpTextField(
-                controller: _otpController,
+                controller:
+                    _otpController,
+
+                onCompleted: (otp) {
+                  provider.setOtp(otp);
+                },
               ),
 
               const SizedBox(
-                height: AppSizes.spaceXL,
+                height:
+                    AppSizes.spaceXL,
               ),
 
               //--------------------------------------------------
-              // Resend OTP
+              // Resend Timer
               //--------------------------------------------------
 
               ResendTimer(
-                onResend: _resendOtp,
+                onResend:
+                    _resendOtp,
               ),
 
               const SizedBox(
-                height: AppSizes.spaceXXXL,
+                height:
+                    AppSizes.spaceXXXL,
               ),
 
               //--------------------------------------------------
@@ -153,12 +258,19 @@ class _OtpScreenState extends State<OtpScreen> {
               //--------------------------------------------------
 
               PrimaryButton(
-                text: AppStrings.verifyOtp,
-                isLoading: authProvider.isLoading,
-                icon: Icons.verified_rounded,
-                onPressed: authProvider.isLoading
-                    ? null
-                    : _verifyOtp,
+                text:
+                    AppStrings.verifyOtp,
+
+                icon:
+                    Icons.verified_rounded,
+
+                isLoading:
+                    provider.isLoading,
+
+                onPressed:
+                    provider.isLoading
+                        ? null
+                        : _verifyOtp,
               ),
             ],
           ),

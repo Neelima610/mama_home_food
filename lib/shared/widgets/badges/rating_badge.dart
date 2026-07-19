@@ -26,7 +26,7 @@ class RatingBadge extends StatelessWidget {
           decoration: BoxDecoration(
             color: AppColors.accent,
             borderRadius: BorderRadius.circular(
-              AppSizes.radiusMedium,
+              AppSizes.radiusM,
             ),
           ),
           child: Row(

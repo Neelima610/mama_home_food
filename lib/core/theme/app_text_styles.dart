@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 
 import '../colors/colors.dart';
+import '../constants/app_sizes.dart';
 
 class AppTextStyles {
   AppTextStyles._();
@@ -12,19 +13,19 @@ class AppTextStyles {
   //==================================================
 
   static const displayLarge = TextStyle(
-    fontSize: 36,
+    fontSize: AppSizes.fontDisplay,
     fontWeight: FontWeight.bold,
     color: AppColors.textDark,
   );
 
   static const displayMedium = TextStyle(
-    fontSize: 32,
+    fontSize: AppSizes.fontXXXL,
     fontWeight: FontWeight.bold,
     color: AppColors.textDark,
   );
 
   static const displaySmall = TextStyle(
-    fontSize: 28,
+    fontSize: AppSizes.fontXXLDisplay,
     fontWeight: FontWeight.bold,
     color: AppColors.textDark,
   );
@@ -34,20 +35,26 @@ class AppTextStyles {
   //==================================================
 
   static const heading1 = TextStyle(
-    fontSize: 24,
+    fontSize: AppSizes.fontXXL,
     fontWeight: FontWeight.bold,
     color: AppColors.textDark,
   );
 
   static const heading2 = TextStyle(
-    fontSize: 20,
+    fontSize: AppSizes.fontXL,
     fontWeight: FontWeight.w700,
     color: AppColors.textDark,
   );
 
   static const heading3 = TextStyle(
-    fontSize: 18,
+    fontSize: AppSizes.fontL,
     fontWeight: FontWeight.w600,
+    color: AppColors.textDark,
+  );
+
+  static const heading4 = TextStyle(
+    fontSize: AppSizes.fontM,
+    fontWeight: FontWeight.w500,
     color: AppColors.textDark,
   );
 
@@ -56,19 +63,19 @@ class AppTextStyles {
   //==================================================
 
   static const titleLarge = TextStyle(
-    fontSize: 18,
+    fontSize: AppSizes.fontL,
     fontWeight: FontWeight.w600,
     color: AppColors.textDark,
   );
 
   static const titleMedium = TextStyle(
-    fontSize: 16,
+    fontSize: AppSizes.fontM,
     fontWeight: FontWeight.w600,
     color: AppColors.textDark,
   );
 
   static const titleSmall = TextStyle(
-    fontSize: 14,
+    fontSize: AppSizes.fontS,
     fontWeight: FontWeight.w600,
     color: AppColors.textDark,
   );
@@ -78,19 +85,19 @@ class AppTextStyles {
   //==================================================
 
   static const bodyLarge = TextStyle(
-    fontSize: 16,
+    fontSize: AppSizes.fontL,
     fontWeight: FontWeight.normal,
     color: AppColors.textDark,
   );
 
   static const bodyMedium = TextStyle(
-    fontSize: 14,
+    fontSize: AppSizes.fontM,
     fontWeight: FontWeight.normal,
     color: AppColors.textMedium,
   );
 
   static const bodySmall = TextStyle(
-    fontSize: 12,
+    fontSize: AppSizes.fontS,
     fontWeight: FontWeight.normal,
     color: AppColors.textMedium,
   );
@@ -100,19 +107,19 @@ class AppTextStyles {
   //==================================================
 
   static const labelLarge = TextStyle(
-    fontSize: 14,
+    fontSize: AppSizes.fontM,
     fontWeight: FontWeight.w600,
     color: AppColors.textDark,
   );
 
   static const labelMedium = TextStyle(
-    fontSize: 12,
+    fontSize: AppSizes.fontS,
     fontWeight: FontWeight.w500,
     color: AppColors.textMedium,
   );
 
   static const labelSmall = TextStyle(
-    fontSize: 10,
+    fontSize: AppSizes.fontXS,
     fontWeight: FontWeight.w500,
     color: AppColors.textHint,
   );
@@ -122,7 +129,7 @@ class AppTextStyles {
   //==================================================
 
   static const button = TextStyle(
-    fontSize: 16,
+    fontSize: AppSizes.fontL,
     fontWeight: FontWeight.bold,
     color: AppColors.white,
   );
@@ -132,13 +139,13 @@ class AppTextStyles {
   //==================================================
 
   static const price = TextStyle(
-    fontSize: 24,
+    fontSize: AppSizes.fontXXL,
     fontWeight: FontWeight.bold,
     color: AppColors.primary,
   );
 
   static const oldPrice = TextStyle(
-    fontSize: 16,
+    fontSize: AppSizes.fontL,
     fontWeight: FontWeight.w500,
     color: AppColors.grey,
     decoration: TextDecoration.lineThrough,
@@ -149,31 +156,49 @@ class AppTextStyles {
   //==================================================
 
   static const caption = TextStyle(
-    fontSize: 11,
+    fontSize: AppSizes.fontXS,
     fontWeight: FontWeight.normal,
     color: AppColors.textHint,
   );
 
-  static const TextStyle rating = TextStyle(
+  //==================================================
+  // Rating
+  //==================================================
+
+  static const rating = TextStyle(
     fontFamily: 'Poppins',
-    fontSize: 13,
+    fontSize: AppSizes.fontS,
     fontWeight: FontWeight.w600,
     color: AppColors.textDark,
   );
 
-  static const TextStyle appBarTitle = TextStyle(
-  fontSize: 20,
-  fontWeight: FontWeight.w600,
-  color: AppColors.textDark,
-);
+  //==================================================
+  // App Bar
+  //==================================================
 
-static const TextStyle sectionTitle = TextStyle(
-  fontSize: 18,
-  fontWeight: FontWeight.bold,
-);
+  static const appBarTitle = TextStyle(
+    fontSize: AppSizes.fontXL,
+    fontWeight: FontWeight.w600,
+    color: AppColors.textDark,
+  );
 
-static const TextStyle chip = TextStyle(
-  fontSize: 12,
-  fontWeight: FontWeight.w500,
-);
+  //==================================================
+  // Section
+  //==================================================
+
+  static const sectionTitle = TextStyle(
+    fontSize: AppSizes.fontL,
+    fontWeight: FontWeight.bold,
+    color: AppColors.textDark,
+  );
+
+  //==================================================
+  // Chip
+  //==================================================
+
+  static const chip = TextStyle(
+    fontSize: AppSizes.fontS,
+    fontWeight: FontWeight.w500,
+    color: AppColors.textDark,
+  );
 }

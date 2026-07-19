@@ -1,3 +1,5 @@
+
+// cart_screen.dart
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -25,8 +27,12 @@ class CartScreen extends StatelessWidget {
         return Scaffold(
           appBar: const CartAppBar(),
 
-          body: ListView.builder(
-            padding: const EdgeInsets.all(16),
+         body: RefreshIndicator(
+  onRefresh: () async {
+    provider.loadCart();
+  },
+  child: ListView.builder(
+            padding: const EdgeInsets.fromLTRB(16,16,16,100,),
             itemCount: provider.cartItems.length,
             itemBuilder: (context, index) {
               final cartItem =
@@ -55,25 +61,23 @@ class CartScreen extends StatelessWidget {
               );
             },
           ),
+         ),
 
-          bottomNavigationBar: CartPriceSummary(
-            subtotal: provider.subtotal,
-
-            deliveryCharge:
-                provider.deliveryCharge,
-
-            discount: provider.discount,
-
-            total: provider.grandTotal,
-
-            onCheckout: () {
-              Navigator.pushNamed(
-                context,
-                RouteNames.checkout,
-              );
-            },
-          ),
-        );
+          bottomNavigationBar: SafeArea(
+  child: CartPriceSummary(
+    subtotal: provider.subtotal,
+    deliveryCharge: provider.deliveryCharge,
+    discount: provider.discount,
+    total: provider.grandTotal,
+    onCheckout: () {
+      Navigator.pushNamed(
+        context,
+        RouteNames.checkout,
+      );
+    },
+  ),
+),
+      );
       },
     );
   }

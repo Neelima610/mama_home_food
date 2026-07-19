@@ -34,7 +34,7 @@ class PrimaryButton extends StatelessWidget {
           elevation: 0,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(
-              AppSizes.radiusMedium,
+              AppSizes.radiusM,
             ),
           ),
         ),

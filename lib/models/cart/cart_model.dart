@@ -1,3 +1,5 @@
+
+// cart_model.dart
 import '../product/product_model.dart';
 
 class CartModel {
@@ -11,6 +13,19 @@ class CartModel {
 
   double get totalPrice =>
       product.price * quantity;
+
+  //--------------------------------------------------
+// Total Savings
+//--------------------------------------------------
+
+double get totalSavings {
+  if (product.oldPrice == null) {
+    return 0;
+  }
+
+  return (product.oldPrice! - product.price) *
+      quantity;
+}
 
   CartModel copyWith({
     ProductModel? product,

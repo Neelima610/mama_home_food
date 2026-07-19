@@ -1,140 +1,94 @@
-import 'package:flutter/material.dart';
 
-import '../../../core/colors/app_colors.dart';
+
+// order_card.dart
+
+import 'package:flutter/material.dart';
 import '../../../core/constants/constants.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../models/order/order_model.dart';
+import '../../../shared/widgets/cards/custom_card.dart';
+import '../helpers/order_formatter.dart';
 import '../helpers/order_helper.dart';
-import 'order_status_chip.dart';
 
 class OrderCard extends StatelessWidget {
-  const OrderCard({
-    super.key,
-    required this.order,
-    required this.onTap,
-  });
+  const OrderCard({super.key, required this.order, required this.onTap});
 
   final OrderModel order;
+
   final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 0,
-      color: AppColors.white,
-      margin: const EdgeInsets.only(
-        bottom: AppSizes.spaceL,
-      ),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(
-          AppSizes.radiusLarge,
-        ),
-        side: const BorderSide(
-          color: AppColors.border,
-        ),
-      ),
-      child: InkWell(
-        borderRadius: BorderRadius.circular(
-          AppSizes.radiusLarge,
-        ),
-        onTap: onTap,
-        child: Padding(
-          padding: const EdgeInsets.all(
-            AppSizes.spaceL,
-          ),
-          child: Column(
-            crossAxisAlignment:
-                CrossAxisAlignment.start,
+    return CustomCard(
+      key: ValueKey(order.id),
+      margin: const EdgeInsets.only(bottom: AppSizes.spaceM),
+      onTap: onTap,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          //--------------------------------------------------
+          // Order ID & Status
+          //--------------------------------------------------
+          Row(
             children: [
-              //--------------------------------------------------
-              // Order ID
-              //--------------------------------------------------
-
-              Text(
-                OrderHelper.formatOrderId(
-                  order.id,
+              Expanded(
+                child: Text(
+                  OrderFormatter.formatOrderId(order.id),
+                  style: AppTextStyles.titleMedium,
                 ),
-                style: AppTextStyles.heading3,
               ),
 
-              const SizedBox(
-                height: AppSizes.spaceXS,
-              ),
-
-              //--------------------------------------------------
-              // Order Date
-              //--------------------------------------------------
-
-              Text(
-                OrderHelper.formatDateTime(
-                  order.orderedAt,
+              Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: AppSizes.spaceM,
+                  vertical: AppSizes.spaceXS,
                 ),
-                style: AppTextStyles.bodySmall,
-              ),
-
-              const SizedBox(
-                height: AppSizes.spaceM,
-              ),
-
-              //--------------------------------------------------
-              // Status
-              //--------------------------------------------------
-
-              OrderStatusChip(
-                status: order.status,
-              ),
-
-              const SizedBox(
-                height: AppSizes.spaceL,
-              ),
-
-              //--------------------------------------------------
-              // Items & Total
-              //--------------------------------------------------
-
-              Row(
-                children: [
-                  Expanded(
-                    child: Text(
-                      '${order.items.length} Items',
-                      style:
-                          AppTextStyles.bodyMedium,
-                    ),
-                  ),
-
-                  Text(
-                    '₹${order.grandTotal.toStringAsFixed(0)}',
-                    style:
-                        AppTextStyles.heading3,
-                  ),
-                ],
-              ),
-
-              const SizedBox(
-                height: AppSizes.spaceL,
-              ),
-
-              //--------------------------------------------------
-              // View Details
-              //--------------------------------------------------
-
-              Align(
-                alignment:
-                    Alignment.centerRight,
-                child: TextButton.icon(
-                  onPressed: onTap,
-                  icon: const Icon(
-                    Icons.visibility_rounded,
-                    size: AppSizes.iconSmall,
-                  ),
-                  label: const Text(
-                    AppStrings.viewDetails,
+                decoration: BoxDecoration(
+                  color: OrderHelper.getStatusColor(
+                    order.orderStatus,
+                  ).withValues(alpha: 0.12),
+                  borderRadius: BorderRadius.circular(AppSizes.radiusXL),
+                ),
+                child: Text(
+                  OrderHelper.getStatusTitle(order.orderStatus),
+                  style: AppTextStyles.labelMedium.copyWith(
+                    color: OrderHelper.getStatusColor(order.orderStatus),
                   ),
                 ),
               ),
             ],
           ),
-        ),
+
+          const SizedBox(height: AppSizes.spaceM),
+
+          //--------------------------------------------------
+          // Quantity
+          //--------------------------------------------------
+          Text(
+            OrderFormatter.formatQuantity(order.quantity),
+            style: AppTextStyles.bodyMedium,
+          ),
+
+          const SizedBox(height: AppSizes.spaceXS),
+
+          //--------------------------------------------------
+          // Total
+          //--------------------------------------------------
+          Text(
+            OrderFormatter.formatAmount(order.grandTotal),
+            style: AppTextStyles.price,
+          ),
+
+          const SizedBox(height: AppSizes.spaceXS),
+
+          //--------------------------------------------------
+          // Date
+          //--------------------------------------------------
+          Text(
+            OrderFormatter.formatDateTime(order.orderDate),
+            style: AppTextStyles.bodySmall,
+          ),
+        ],
       ),
     );
   }

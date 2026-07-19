@@ -20,7 +20,7 @@ class PaymentMethodCard extends StatelessWidget {
       elevation: 2,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(
-          AppSizes.radiusLarge,
+          AppSizes.radiusL,
         ),
       ),
       child: Padding(
@@ -86,18 +86,35 @@ class PaymentMethodCard extends StatelessWidget {
             ),
 
             //--------------------------------------------------
-            // Credit / Debit Card
+            // Credit Card
             //--------------------------------------------------
 
             SelectableCard(
-              title: AppStrings.cardPayment,
+              title: AppStrings.creditCard,
               icon: Icons.credit_card_outlined,
               isSelected:
                   selectedMethod ==
-                  AppStrings.cardPayment,
+                  AppStrings.creditCard,
               onTap: () {
                 onChanged(
-                  AppStrings.cardPayment,
+                  AppStrings.creditCard,
+                );
+              },
+            ),
+
+            //--------------------------------------------------
+            // Debit Card
+            //--------------------------------------------------
+
+            SelectableCard(
+              title: AppStrings.debitCard,
+              icon: Icons.credit_card_outlined,
+              isSelected:
+                  selectedMethod ==
+                  AppStrings.debitCard,
+              onTap: () {
+                onChanged(
+                  AppStrings.debitCard,
                 );
               },
             ),

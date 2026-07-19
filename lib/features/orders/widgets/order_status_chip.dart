@@ -1,9 +1,14 @@
+
+
+// order_status_chip.dart
+
 import 'package:flutter/material.dart';
 
 import '../../../core/constants/constants.dart';
 import '../../../core/theme/app_text_styles.dart';
-import '../../../models/order/order_model.dart';
+import '../../../models/order/order_status.dart';
 import '../helpers/order_helper.dart';
+
 
 class OrderStatusChip extends StatelessWidget {
   const OrderStatusChip({
@@ -15,46 +20,31 @@ class OrderStatusChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final color =
-        OrderHelper.getStatusColor(status);
+    final color = OrderHelper.getStatusColor(
+      status,
+    );
 
-    return Container(
-      padding: const EdgeInsets.symmetric(
-        horizontal: AppSizes.spaceM,
-        vertical: AppSizes.spaceXS,
+    return Chip(
+      backgroundColor: color.withValues(
+        alpha: 0.12,
       ),
-      decoration: BoxDecoration(
-        color: color.withValues(alpha: 0.12),
-        borderRadius: BorderRadius.circular(
-          AppSizes.radiusLarge,
+      side: BorderSide.none,
+      visualDensity:
+          VisualDensity.compact,
+      padding:
+          const EdgeInsets.symmetric(
+        horizontal: AppSizes.spaceS,
+      ),
+      label: Text(
+        OrderHelper.getStatusTitle(
+          status,
         ),
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Icon(
-            OrderHelper.getStatusIcon(
-              status,
-            ),
-            size: AppSizes.iconSmall,
-            color: color,
-          ),
-
-          const SizedBox(
-            width: AppSizes.spaceXS,
-          ),
-
-          Text(
-            OrderHelper.getStatusText(
-              status,
-            ),
-            style:
-                AppTextStyles.labelMedium.copyWith(
-              color: color,
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-        ],
+        style: AppTextStyles.bodySmall
+            .copyWith(
+          color: color,
+          fontWeight:
+              FontWeight.w600,
+        ),
       ),
     );
   }

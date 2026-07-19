@@ -1,3 +1,4 @@
+
 // app_assets.dart
 /// Centralized asset paths used throughout the application.
 ///
@@ -48,9 +49,11 @@ class AppAssets {
   // Placeholder Images
   // ==========================================================
 
-  static const String productPlaceholder = '$_images/product_placeholder.png';
+  static const String productPlaceholder =
+      '$_images/product_placeholder.png';
 
-  static const String profilePlaceholder = '$_images/profile_placeholder.png';
+  static const String profilePlaceholder =
+      '$_images/profile_placeholder.png';
 
   // ==========================================================
   // Icons
@@ -58,39 +61,137 @@ class AppAssets {
 
   static const String appIcon = '$_icons/app_icon.png';
 
-  // ==========================================================
-  // Product Images
-  // ==========================================================
+  //==========================================================
+// Product Images
+//==========================================================
 
-  static const String sampleProduct = '$_products/sample_product.jpg';
+//--------------------------
+// Veg Meals
+//--------------------------
 
-  static const String vegMeals = '$_products/veg_meals.png';
+static const String vegMeals =
+    '$_products/veg_meals_1.jpg';
 
-  static const String miniMeals = '$_products/mini_meals.png';
+static const List<String> vegMealsImages = [
+  '$_products/veg_meals_1.jpg',
+  '$_products/veg_meals_2.jpg',
+  '$_products/veg_meals_3.jpg',
+];
 
-  static const String mangoPickle = '$_products/mango_pickle.png';
+//--------------------------
+// Mini Meals
+//--------------------------
 
-  static const String gonguraPickle = '$_products/gongura_pickle.png';
+static const String miniMeals =
+    '$_products/mini_meals_1.jpg';
 
-  static const String karamPodi = '$_products/karam_podi.png';
+static const List<String> miniMealsImages = [
+  '$_products/mini_meals_1.jpg',
+  '$_products/mini_meals_2.jpg',
+];
 
-  static const String murukulu = '$_products/murukulu.png';
+//--------------------------
+// Mango Pickle
+//--------------------------
 
-  static const String boondiLaddu = '$_products/boondi_laddu.png';
+static const String mangoPickle =
+    '$_products/mango_pickle_1.jpg';
 
-  static const String monthlyPlan = '$_products/monthly_plan.png';
+static const List<String> mangoPickleImages = [
+  '$_products/mango_pickle_1.jpg',
+  '$_products/mango_pickle_2.jpg',
+  '$_products/mango_pickle_3.jpg',
+];
 
-  static const String birthdayCatering = '$_products/birthday_catering.png';
+//--------------------------
+// Gongura Pickle
+//--------------------------
+
+static const String gonguraPickle =
+    '$_products/gongura_pickle_1.jpg';
+
+static const List<String> gonguraPickleImages = [
+  '$_products/gongura_pickle_1.jpg',
+  '$_products/gongura_pickle_2.jpg',
+];
+
+//--------------------------
+// Karam Podi
+//--------------------------
+
+static const String karamPodi =
+    '$_products/karam_podi_1.jpg';
+
+static const List<String> karamPodiImages = [
+  '$_products/karam_podi_1.jpg',
+  '$_products/karam_podi_2.jpg',
+  '$_products/karam_podi_3.jpg',
+];
+
+//--------------------------
+// Murukulu
+//--------------------------
+
+static const String murukulu =
+    '$_products/murukulu_1.jpg';
+
+static const List<String> murukuluImages = [
+  '$_products/murukulu_1.jpg',
+  '$_products/murukulu_2.jpg',
+];
+
+//--------------------------
+// Boondi Laddu
+//--------------------------
+
+static const String boondiLaddu =
+    '$_products/boondi_laddu_1.jpg';
+
+static const List<String> boondiLadduImages = [
+  '$_products/boondi_laddu_1.jpg',
+  '$_products/boondi_laddu_2.jpg',
+  '$_products/boondi_laddu_3.jpg',
+];
+
+//--------------------------
+// Monthly Plan
+//--------------------------
+
+static const String monthlyPlan =
+    '$_products/monthly_plan_1.jpg';
+
+static const List<String> monthlyPlanImages = [
+  '$_products/monthly_plan_1.jpg',
+  '$_products/monthly_plan_2.jpg',
+];
+
+//--------------------------
+// Birthday Catering
+//--------------------------
+
+static const String birthdayCatering =
+    '$_products/birthday_catering_1.jpg';
+
+static const List<String> birthdayCateringImages = [
+  '$_products/birthday_catering_1.jpg',
+  '$_products/birthday_catering_2.jpg',
+];
 
   // ==========================================================
   // Animations
   // ==========================================================
 
   static const String loading = '$_animations/loading.json';
-
   static const String empty = '$_animations/empty.json';
-
   static const String success = '$_animations/success.json';
-
   static const String error = '$_animations/error.json';
+
+  // ==========================================================
+  // Payment Icons
+  // ==========================================================
+
+  static const String cod = '$_icons/payments/cod.png';
+  static const String upi = '$_icons/payments/upi.png';
+  static const String card = '$_icons/payments/card.png';
+  static const String wallet = '$_icons/payments/wallet.png';
 }

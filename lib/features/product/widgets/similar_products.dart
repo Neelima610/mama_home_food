@@ -1,3 +1,5 @@
+// similar_products.dart
+
 import 'package:flutter/material.dart';
 
 import '../../../core/constants/constants.dart';
@@ -16,18 +18,22 @@ class SimilarProducts extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final products = ProductRepository.getProductsByCategory(
+    final products =
+        ProductRepository.getProductsByCategory(
       product.categoryId,
     )
-        .where((item) => item.id != product.id)
-        .toList();
+            .where(
+              (item) => item.id != product.id,
+            )
+            .toList();
 
     if (products.isEmpty) {
       return const SizedBox.shrink();
     }
 
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment:
+          CrossAxisAlignment.start,
       children: [
         Text(
           AppStrings.similarProducts,
@@ -41,21 +47,21 @@ class SimilarProducts extends StatelessWidget {
         SizedBox(
           height: 290,
           child: ListView.separated(
-            scrollDirection: Axis.horizontal,
+            scrollDirection:
+                Axis.horizontal,
             itemCount: products.length,
             separatorBuilder: (_, _) =>
-                const SizedBox(width: AppSizes.spaceM),
-            itemBuilder: (context, index) {
+                const SizedBox(
+              width: AppSizes.spaceM,
+            ),
+            itemBuilder: (
+              context,
+              index,
+            ) {
               return SizedBox(
                 width: 180,
                 child: ProductCard(
                   product: products[index],
-                  onTap: () {
-                    // Navigate to Product Screen later
-                  },
-                  onAddToCart: () {
-                    // Connect CartProvider later
-                  },
                 ),
               );
             },

@@ -1,3 +1,5 @@
+// product_price.dart
+
 import 'package:flutter/material.dart';
 
 import '../../../core/colors/colors.dart';
@@ -9,71 +11,85 @@ class ProductPrice extends StatelessWidget {
   const ProductPrice({
     super.key,
     required this.product,
+    this.showDiscount = true,
+    this.showSavings = false,
   });
 
   final ProductModel product;
 
+  final bool showDiscount;
+  final bool showSavings;
+
   @override
   Widget build(BuildContext context) {
-    final bool hasDiscount =
-        product.oldPrice != null &&
-        product.oldPrice! > product.price;
-
-    final int discountPercentage = hasDiscount
-        ? (((product.oldPrice! - product.price) /
-                    product.oldPrice!) *
-                100)
-            .round()
-        : 0;
-
     return Row(
-      crossAxisAlignment: CrossAxisAlignment.end,
+      crossAxisAlignment:
+          CrossAxisAlignment.end,
       children: [
-        // Current Price
-        Text(
-          "₹${product.price.toStringAsFixed(0)}",
-          style: AppTextStyles.heading1.copyWith(
-            color: AppColors.primary,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
+        _buildCurrentPrice(),
 
-        const SizedBox(width: AppSizes.spaceM),
-
-        // Old Price
-        if (hasDiscount)
-          Text(
-            "₹${product.oldPrice!.toStringAsFixed(0)}",
-            style: AppTextStyles.bodyMedium.copyWith(
-              color: AppColors.grey,
-              decoration: TextDecoration.lineThrough,
-            ),
+        if (product.hasDiscount) ...[
+          const SizedBox(
+            width: AppSizes.spaceS,
           ),
 
-        const Spacer(),
+          _buildOldPrice(),
+        ],
 
-        // Discount Badge
-        if (hasDiscount)
-          Container(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 12,
-              vertical: 6,
-            ),
-            decoration: BoxDecoration(
-              color: AppColors.accent,
-              borderRadius: BorderRadius.circular(
-                AppSizes.radiusLarge,
-              ),
-            ),
-            child: Text(
-              "$discountPercentage% OFF",
-              style: AppTextStyles.bodySmall.copyWith(
-                color: AppColors.white,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
+        if (showDiscount &&
+            product.hasDiscount) ...[
+          const SizedBox(
+            width: AppSizes.spaceS,
           ),
+
+          _buildDiscount(),
+        ],
+
+        if (showSavings &&
+            product.hasDiscount) ...[
+          const Spacer(),
+
+          _buildSavings(),
+        ],
       ],
+    );
+  }
+
+  Widget _buildCurrentPrice() {
+    return Text(
+      '${AppConstants.currencySymbol}'
+      '${product.price.toStringAsFixed(0)}',
+      style: AppTextStyles.price,
+    );
+  }
+
+  Widget _buildOldPrice() {
+    return Text(
+      '${AppConstants.currencySymbol}'
+      '${product.oldPrice!.toStringAsFixed(0)}',
+      style: AppTextStyles.oldPrice,
+    );
+  }
+
+  Widget _buildDiscount() {
+    return Text(
+      '${product.discountPercentage}% OFF',
+      style: AppTextStyles.labelSmall.copyWith(
+        color: AppColors.offer,
+        fontWeight: FontWeight.bold,
+      ),
+    );
+  }
+
+  Widget _buildSavings() {
+    return Text(
+      'Save '
+      '${AppConstants.currencySymbol}'
+      '${product.savings.toStringAsFixed(0)}',
+      style: AppTextStyles.labelSmall.copyWith(
+        color: AppColors.success,
+        fontWeight: FontWeight.w600,
+      ),
     );
   }
 }

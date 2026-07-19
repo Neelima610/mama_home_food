@@ -1,3 +1,5 @@
+
+// category_card.dart
 import 'package:flutter/material.dart';
 
 import '../../../core/colors/colors.dart';
@@ -20,56 +22,78 @@ class CategoryCard extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       borderRadius: BorderRadius.circular(
-        AppSizes.radiusLarge,
+        AppSizes.radiusL,
       ),
       child: Column(
-        children: [
-          Container(
-            height: 70,
-            width: 70,
-            decoration: BoxDecoration(
-              color: AppColors.card,
-              borderRadius: BorderRadius.circular(
-                AppSizes.radiusLarge,
-              ),
-              boxShadow: const [
-                BoxShadow(
-                  color: AppColors.shadow,
-                  blurRadius: 6,
-                  offset: Offset(0, 3),
-                ),
-              ],
-            ),
-            child: Padding(
-              padding: const EdgeInsets.all(12),
-              child: category.image.isNotEmpty
-                  ? Image.asset(
-                      category.image,
-                      fit: BoxFit.contain,
-                    )
-                  : Icon(
-                      category.icon,
-                      size: 34,
-                      color: AppColors.primary,
-                    ),
-            ),
-          ),
+  mainAxisSize: MainAxisSize.min,
 
-          const SizedBox(
-            height: AppSizes.spaceS,
-          ),
+  children: [
 
-          Text(
-            category.name,
-            textAlign: TextAlign.center,
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
-            style: AppTextStyles.bodySmall.copyWith(
-              fontWeight: FontWeight.w600,
-            ),
+    Container(
+      height: 60,
+      width: 60,
+
+      decoration: BoxDecoration(
+        color: AppColors.card,
+
+        borderRadius:
+            BorderRadius.circular(
+          AppSizes.radiusL,
+        ),
+
+        boxShadow: const [
+          BoxShadow(
+            color: AppColors.shadow,
+            blurRadius: 6,
+            offset: Offset(0, 3),
           ),
         ],
       ),
+
+      child: Padding(
+        padding: const EdgeInsets.all(10),
+
+        child: category.image.isNotEmpty
+
+            ? Image.asset(
+                category.image,
+                fit: BoxFit.contain,
+              )
+
+            : Icon(
+                category.icon,
+                size: 30,
+                color: AppColors.primary,
+              ),
+      ),
+    ),
+
+
+    const SizedBox(
+      height: AppSizes.spaceXS,
+    ),
+
+
+    Text(
+      category.name,
+
+      textAlign:
+          TextAlign.center,
+
+      maxLines: 2,
+
+      overflow:
+          TextOverflow.ellipsis,
+
+      style:
+          AppTextStyles.bodySmall
+              .copyWith(
+        fontWeight:
+            FontWeight.w600,
+      ),
+    ),
+  ],
+),
     );
   }
 }

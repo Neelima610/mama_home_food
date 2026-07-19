@@ -26,7 +26,7 @@ class SelectableCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       borderRadius:
-          BorderRadius.circular(AppSizes.radiusLarge),
+          BorderRadius.circular(AppSizes.radiusL),
       onTap: onTap,
       child: AnimatedContainer(
         duration: const Duration(
@@ -43,7 +43,7 @@ class SelectableCard extends StatelessWidget {
               : AppColors.card,
           borderRadius:
               BorderRadius.circular(
-            AppSizes.radiusLarge,
+            AppSizes.radiusL,
           ),
           border: Border.all(
             color: isSelected

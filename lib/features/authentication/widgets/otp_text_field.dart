@@ -131,7 +131,7 @@ class _OtpTextFieldState
                     OutlineInputBorder(
                   borderRadius:
                       BorderRadius.circular(
-                    AppSizes.radiusMedium,
+                    AppSizes.radiusM,
                   ),
                   borderSide:
                       const BorderSide(
@@ -142,7 +142,7 @@ class _OtpTextFieldState
                     OutlineInputBorder(
                   borderRadius:
                       BorderRadius.circular(
-                    AppSizes.radiusMedium,
+                    AppSizes.radiusM,
                   ),
                   borderSide:
                       const BorderSide(
@@ -154,7 +154,7 @@ class _OtpTextFieldState
                     OutlineInputBorder(
                   borderRadius:
                       BorderRadius.circular(
-                    AppSizes.radiusMedium,
+                    AppSizes.radiusM,
                   ),
                   borderSide:
                       const BorderSide(
@@ -165,7 +165,7 @@ class _OtpTextFieldState
                     OutlineInputBorder(
                   borderRadius:
                       BorderRadius.circular(
-                    AppSizes.radiusMedium,
+                    AppSizes.radiusM,
                   ),
                   borderSide:
                       const BorderSide(

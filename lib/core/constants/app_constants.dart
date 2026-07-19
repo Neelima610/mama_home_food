@@ -20,7 +20,7 @@ class AppConstants {
   // ==========================================================
   // Contact Information
   // ==========================================================
-
+static const String userName = 'Neelima';
   static const String phonePrimary = '7780307148';
 
   static const String phoneSecondary = '9000769978';
@@ -48,9 +48,27 @@ class AppConstants {
   // ==========================================================
 
   static const int otpLength = 6;
-  // ==========================================================
-// Authentication
-// ==========================================================
+//--------------------------------------------------
+// Currency
+//--------------------------------------------------
 
+
+static const String currencyCode = "INR";
+
+
+//--------------------------------------------------
+// Payment
+//--------------------------------------------------
+
+static const String phonePePackage =
+    "com.phonepe.app";
+
+static const String googlePayPackage =
+    "com.google.android.apps.nbu.paisa.user";
+
+static const String paytmPackage =
+    "net.one97.paytm";
+
+    static const String orderPrefix = "ORD";
 
 }

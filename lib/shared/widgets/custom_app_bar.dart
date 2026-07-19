@@ -41,7 +41,7 @@ class CustomAppBar extends StatelessWidget
           ? IconButton(
               icon: const Icon(
                 Icons.arrow_back_ios_new_rounded,
-                size: AppSizes.iconMedium,
+                size: AppSizes.iconM,
               ),
               onPressed: () => Navigator.pop(context),
             )
@@ -58,7 +58,7 @@ class CustomAppBar extends StatelessWidget
 
       iconTheme: const IconThemeData(
         color: AppColors.white,
-        size: AppSizes.iconMedium,
+        size: AppSizes.iconM,
       ),
     );
   }

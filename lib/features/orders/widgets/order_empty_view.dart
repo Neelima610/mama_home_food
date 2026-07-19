@@ -1,17 +1,20 @@
+
+
+// order_empty_view.dart
+
 import 'package:flutter/material.dart';
 
-import '../../../core/colors/app_colors.dart';
+import '../../../core/colors/colors.dart';
 import '../../../core/constants/constants.dart';
 import '../../../core/theme/app_text_styles.dart';
-import '../../../shared/widgets/buttons/primary_button.dart';
 
 class OrderEmptyView extends StatelessWidget {
   const OrderEmptyView({
     super.key,
-    required this.onStartShopping,
+    this.onStartShopping,
   });
 
-  final VoidCallback onStartShopping;
+  final VoidCallback? onStartShopping;
 
   @override
   Widget build(BuildContext context) {
@@ -24,56 +27,49 @@ class OrderEmptyView extends StatelessWidget {
           mainAxisAlignment:
               MainAxisAlignment.center,
           children: [
-            //--------------------------------------------------
-            // Icon
-            //--------------------------------------------------
-
-            const Icon(
-              Icons.receipt_long_rounded,
-              size: 96,
-              color: AppColors.primary,
+            Icon(
+              Icons.receipt_long_outlined,
+              size: AppSizes.emptyIconSize,
+              color: AppColors.grey,
             ),
 
             const SizedBox(
-              height: AppSizes.spaceXL,
+              height: AppSizes.spaceL,
             ),
 
-            //--------------------------------------------------
-            // Title
-            //--------------------------------------------------
-
             Text(
-              AppStrings.noOrdersYet,
-              style: AppTextStyles.heading2,
+              AppStrings.noOrders,
               textAlign: TextAlign.center,
+              style: AppTextStyles.titleLarge,
             ),
 
             const SizedBox(
               height: AppSizes.spaceS,
             ),
 
-            //--------------------------------------------------
-            // Subtitle
-            //--------------------------------------------------
-
             Text(
-              AppStrings.noOrdersSubtitle,
-              style: AppTextStyles.bodyMedium,
+              AppStrings.noOrdersDescription,
               textAlign: TextAlign.center,
+              style: AppTextStyles.bodyMedium.copyWith(
+                color: AppColors.grey,
+              ),
             ),
 
             const SizedBox(
-              height: AppSizes.spaceXXL,
+              height: AppSizes.spaceXL,
             ),
 
-            //--------------------------------------------------
-            // Button
-            //--------------------------------------------------
-
-            PrimaryButton(
-              text: AppStrings.startShopping,
-              icon: Icons.shopping_bag_rounded,
-              onPressed: onStartShopping,
+            SizedBox(
+              width: AppSizes.buttonWidth,
+              child: FilledButton(
+                key: const ValueKey(
+                  AppKeys.startShoppingButton,
+                ),
+                onPressed: onStartShopping,
+                child: Text(
+                  AppStrings.startShopping,
+                ),
+              ),
             ),
           ],
         ),

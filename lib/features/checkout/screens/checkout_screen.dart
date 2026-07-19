@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../core/constants/constants.dart';
-import '../../../shared/widgets/cards/price_summary_card.dart';
+import '../../../core/routes/routes.dart';
+import '../../../shared/widgets/cards/price_summary.dart';
 import '../../cart/providers/cart_provider.dart';
 import '../providers/checkout_provider.dart';
 import '../widgets/checkout_app_bar.dart';
 import '../widgets/coupon_card.dart';
 import '../widgets/delivery_address_card.dart';
-import '../widgets/payment_method_card.dart';
+
 import '../widgets/place_order_section.dart';
 
 class CheckoutScreen extends StatelessWidget {
@@ -54,31 +55,13 @@ class CheckoutScreen extends StatelessWidget {
               // Order Summary
               //--------------------------------------------------
 
-              PriceSummaryCard(
+              PriceSummary(
                 subtotal: cartProvider.subtotal,
   deliveryCharge: cartProvider.deliveryCharge,
   discount: cartProvider.discount,
   grandTotal: cartProvider.grandTotal,
 ),
-              //--------------------------------------------------
-              // Payment Method
-              //--------------------------------------------------
-
-              PaymentMethodCard(
-                selectedMethod:
-                    checkoutProvider.paymentMethod,
-                onChanged: (method) {
-                  checkoutProvider
-                      .selectPaymentMethod(
-                    method,
-                  );
-                },
-              ),
-
-              const SizedBox(
-                height: AppSizes.spaceL,
-              ),
-
+              
               //--------------------------------------------------
               // Coupon
               //--------------------------------------------------
@@ -107,21 +90,13 @@ class CheckoutScreen extends StatelessWidget {
                     cartProvider.discount,
                 grandTotal:
                     cartProvider.grandTotal,
-                onPlaceOrder: () {
-                  debugPrint(
-                    "Place Order Clicked",
-                  );
-
-                  ScaffoldMessenger.of(
-                    context,
-                  ).showSnackBar(
-                    const SnackBar(
-                      content: Text(
-                        "Order placed successfully!",
-                      ),
-                    ),
-                  );
-                },
+               onPlaceOrder: () {
+  Navigator.pushNamed(
+    context,
+    RouteNames.payment,
+    arguments: cartProvider.grandTotal,
+  );
+},
               ),
 
               const SizedBox(

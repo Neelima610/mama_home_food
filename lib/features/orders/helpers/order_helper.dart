@@ -1,37 +1,42 @@
-import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
-import '../../../core/colors/app_colors.dart';
-import '../../../models/order/order_model.dart';
+// order_helper.dart
+import 'package:flutter/material.dart';
+
+import '../../../core/colors/colors.dart';
+import '../../../core/constants/constants.dart';
+import '../../../models/order/order_status.dart';
 
 class OrderHelper {
-  OrderHelper._();
+  const OrderHelper._();
 
   //--------------------------------------------------
-  // Status Text
+  // Order Status Title
   //--------------------------------------------------
 
-  static String getStatusText(
+  static String getStatusTitle(
     OrderStatus status,
   ) {
     switch (status) {
       case OrderStatus.pending:
-        return 'Pending';
+        return AppStrings.orderPending;
 
       case OrderStatus.confirmed:
-        return 'Confirmed';
+        return AppStrings.orderConfirmed;
 
       case OrderStatus.preparing:
-        return 'Preparing';
+        return AppStrings.orderPreparing;
+
+      case OrderStatus.ready:
+        return AppStrings.orderReady;
 
       case OrderStatus.outForDelivery:
-        return 'Out for Delivery';
+        return AppStrings.outForDelivery;
 
       case OrderStatus.delivered:
-        return 'Delivered';
+        return AppStrings.orderDelivered;
 
       case OrderStatus.cancelled:
-        return 'Cancelled';
+        return AppStrings.orderCancelled;
     }
   }
 
@@ -44,100 +49,88 @@ class OrderHelper {
   ) {
     switch (status) {
       case OrderStatus.pending:
-        return Colors.orange;
+        return AppColors.warning;
 
       case OrderStatus.confirmed:
-        return Colors.blue;
-
-      case OrderStatus.preparing:
-        return Colors.deepOrange;
-
-      case OrderStatus.outForDelivery:
         return AppColors.primary;
 
+      case OrderStatus.preparing:
+        return AppColors.secondary;
+
+      case OrderStatus.ready:
+        return AppColors.info;
+
+      case OrderStatus.outForDelivery:
+        return AppColors.accent;
+
       case OrderStatus.delivered:
-        return Colors.green;
+        return AppColors.success;
 
       case OrderStatus.cancelled:
-        return Colors.red;
+        return AppColors.error;
     }
   }
 
   //--------------------------------------------------
-  // Status Icon
+  // Can Cancel
   //--------------------------------------------------
 
-  static IconData getStatusIcon(
+  static bool canCancel(
+    OrderStatus status,
+  ) {
+    return status == OrderStatus.pending ||
+        status == OrderStatus.confirmed;
+  }
+
+  //--------------------------------------------------
+  // Can Track
+  //--------------------------------------------------
+
+  static bool canTrack(
+    OrderStatus status,
+  ) {
+    return status != OrderStatus.cancelled &&
+        status != OrderStatus.delivered;
+  }
+
+  //--------------------------------------------------
+  // Can Reorder
+  //--------------------------------------------------
+
+  static bool canReorder(
+    OrderStatus status,
+  ) {
+    return status == OrderStatus.delivered;
+  }
+
+  //--------------------------------------------------
+  // Progress
+  //--------------------------------------------------
+
+  static double getProgress(
     OrderStatus status,
   ) {
     switch (status) {
       case OrderStatus.pending:
-        return Icons.schedule_rounded;
+        return 0.10;
 
       case OrderStatus.confirmed:
-        return Icons.check_circle_outline_rounded;
+        return 0.25;
 
       case OrderStatus.preparing:
-        return Icons.restaurant_rounded;
+        return 0.50;
+
+      case OrderStatus.ready:
+        return 0.70;
 
       case OrderStatus.outForDelivery:
-        return Icons.delivery_dining_rounded;
+        return 0.90;
 
       case OrderStatus.delivered:
-        return Icons.task_alt_rounded;
+        return 1.00;
 
       case OrderStatus.cancelled:
-        return Icons.cancel_rounded;
+        return 0.00;
     }
-  }
-
-  //--------------------------------------------------
-  // Date
-  //--------------------------------------------------
-
-  static String formatDate(
-    DateTime date,
-  ) {
-    return DateFormat(
-      'dd MMM yyyy',
-    ).format(date);
-  }
-
-  //--------------------------------------------------
-  // Time
-  //--------------------------------------------------
-
-  static String formatTime(
-    DateTime date,
-  ) {
-    return DateFormat(
-      'hh:mm a',
-    ).format(date);
-  }
-
-  //--------------------------------------------------
-  // Date & Time
-  //--------------------------------------------------
-
-  static String formatDateTime(
-    DateTime date,
-  ) {
-    return DateFormat(
-      'dd MMM yyyy • hh:mm a',
-    ).format(date);
-  }
-
-  //--------------------------------------------------
-  // Order ID
-  //--------------------------------------------------
-
-  static String formatOrderId(
-    String id,
-  ) {
-    if (id.length <= 8) {
-      return id;
-    }
-
-    return '#${id.substring(0, 8).toUpperCase()}';
   }
 }

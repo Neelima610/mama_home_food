@@ -1,13 +1,17 @@
+
+// orders_screen.dart
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../core/constants/constants.dart';
-
 import '../../../core/routes/route_names.dart';
-import '../providers/orders_provider.dart';
-import '../widgets/order_app_bar.dart';
+
+import '../providers/order_provider.dart';
+
+import '../widgets/orders_app_bar.dart';
 import '../widgets/order_card.dart';
 import '../widgets/order_empty_view.dart';
+import '../widgets/order_loading.dart';
 
 class OrdersScreen extends StatefulWidget {
   const OrdersScreen({
@@ -25,10 +29,11 @@ class _OrdersScreenState
   void initState() {
     super.initState();
 
-    WidgetsBinding.instance.addPostFrameCallback(
+    WidgetsBinding.instance
+        .addPostFrameCallback(
       (_) {
         context
-            .read<OrdersProvider>()
+            .read<OrderProvider>()
             .loadOrders();
       },
     );
@@ -37,54 +42,61 @@ class _OrdersScreenState
   @override
   Widget build(BuildContext context) {
     final provider =
-        context.watch<OrdersProvider>();
+        context.watch<OrderProvider>();
 
     return Scaffold(
-      appBar: const OrderAppBar(),
+      appBar: const OrdersAppBar(),
 
       body: SafeArea(
         child: provider.isLoading
-            ? OrderEmptyView(
-  onStartShopping: () {
-    Navigator.pop(context);
-
-    // Or navigate to Home if preferred:
-    // Navigator.pushNamedAndRemoveUntil(
-    //   context,
-    //   RouteNames.home,
-    //   (route) => false,
-    // );
-  },
-)
+            ? const OrderLoading()
             : provider.isEmpty
-                ? const Center(
-                    child: Text(
-                      AppStrings.noOrdersFound,
-                    ),
-                  )
-                : ListView.builder(
-                    padding:
-                        const EdgeInsets.all(
-                      AppSizes.screenPadding,
-                    ),
-                    itemCount:
-                        provider.orders.length,
-                    itemBuilder:
-                        (context, index) {
-                      final order =
-                          provider.orders[index];
-
-                      return OrderCard(
-                        order: order,
-                        onTap: () {
-                          Navigator.pushNamed(
-                            context,
-                            RouteNames.orderDetails,
-                            arguments: order,
-                          );
-                        },
+                ? OrderEmptyView(
+                    onStartShopping: () {
+                      Navigator.pushNamedAndRemoveUntil(
+                        context,
+                        RouteNames.home,
+                        (route) => false,
                       );
                     },
+                  )
+                : RefreshIndicator(
+                    onRefresh:
+                        provider.loadOrders,
+                    child: ListView.builder(
+                      padding:
+                          const EdgeInsets.all(
+                        AppSizes.screenPadding,
+                      ),
+                      itemCount:
+                          provider.orders.length,
+                      itemBuilder:
+                          (context, index) {
+                        final order =
+                            provider
+                                .orders[index];
+
+                        return Padding(
+                          padding:
+                              const EdgeInsets.only(
+                            bottom:
+                                AppSizes.spaceM,
+                          ),
+                          child: OrderCard(
+                            order: order,
+                            onTap: () {
+                              Navigator.pushNamed(
+                                context,
+                                RouteNames
+                                    .orderDetails,
+                                arguments:
+                                    order,
+                              );
+                            },
+                          ),
+                        );
+                      },
+                    ),
                   ),
       ),
     );

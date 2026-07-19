@@ -29,13 +29,13 @@ class CartItemCard extends StatelessWidget {
     final product = cartItem.product;
 
     return Card(
-      elevation: 2,
       margin: const EdgeInsets.only(
         bottom: AppSizes.spaceM,
       ),
+      elevation: 1,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(
-          AppSizes.radiusLarge,
+          AppSizes.radiusL,
         ),
       ),
       child: Padding(
@@ -43,22 +43,26 @@ class CartItemCard extends StatelessWidget {
           AppSizes.spaceM,
         ),
         child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment:
+              CrossAxisAlignment.start,
           children: [
             //--------------------------------------------------
             // Product Image
             //--------------------------------------------------
 
             AppNetworkImage(
-  imagePath: product.image,
-  width: 90,
-  height: 90,
-  fit: BoxFit.cover,
-  borderRadius: BorderRadius.circular(
-    AppSizes.radiusMedium,
-  ),
-),
-            
+              imagePath: product.image,
+              width: 90,
+              height: 90,
+              fit: BoxFit.cover,
+              borderRadius: BorderRadius.circular(
+                AppSizes.radiusM,
+              ),
+            ),
+
+            const SizedBox(
+              width: AppSizes.spaceM,
+            ),
 
             //--------------------------------------------------
             // Product Details
@@ -72,8 +76,10 @@ class CartItemCard extends StatelessWidget {
                   Text(
                     product.name,
                     maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    style: AppTextStyles.heading3,
+                    overflow:
+                        TextOverflow.ellipsis,
+                    style:
+                        AppTextStyles.heading3,
                   ),
 
                   const SizedBox(
@@ -98,22 +104,50 @@ class CartItemCard extends StatelessWidget {
 
                   Row(
                     children: [
-                      QuantitySelector(
-                        quantity: cartItem.quantity,
-                        onIncrease: onIncrease,
-                        onDecrease: onDecrease,
+                      Expanded(
+                        child: QuantitySelector(
+                          quantity:
+                              cartItem.quantity,
+                          onIncrease:
+                              onIncrease,
+                          onDecrease:
+                              onDecrease,
+                        ),
                       ),
 
-                      const Spacer(),
+                      const SizedBox(
+                        width:
+                            AppSizes.spaceS,
+                      ),
 
                       IconButton(
-                        onPressed: onRemove,
+                        tooltip:
+                            "Remove Item",
+                        onPressed:
+                            onRemove,
                         icon: const Icon(
-                          Icons.delete_outline,
-                          color: AppColors.error,
+                          Icons
+                              .delete_outline_rounded,
+                          color:
+                              AppColors.error,
                         ),
                       ),
                     ],
+                  ),
+
+                  const SizedBox(
+                    height:
+                        AppSizes.spaceS,
+                  ),
+
+                  Align(
+                    alignment:
+                        Alignment.centerRight,
+                    child: Text(
+                      "Total : ${AppConstants.currencySymbol}${cartItem.totalPrice.toStringAsFixed(0)}",
+                      style: AppTextStyles
+                          .price,
+                    ),
                   ),
                 ],
               ),

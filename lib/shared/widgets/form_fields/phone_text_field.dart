@@ -46,19 +46,19 @@ final String? Function(String?)?
 
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(
-            AppSizes.radiusLarge,
+            AppSizes.radiusL,
           ),
         ),
 
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(
-            AppSizes.radiusLarge,
+            AppSizes.radiusL,
           ),
         ),
 
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(
-            AppSizes.radiusLarge,
+            AppSizes.radiusL,
           ),
         ),
       ),

@@ -24,7 +24,7 @@ class CategoryHeader extends StatelessWidget {
       decoration: BoxDecoration(
         color: Theme.of(context).cardColor,
         borderRadius: BorderRadius.circular(
-          AppSizes.radiusLarge,
+          AppSizes.radiusL,
         ),
       ),
       child: Column(

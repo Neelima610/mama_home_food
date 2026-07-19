@@ -39,7 +39,7 @@ class CustomCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final borderRadius = BorderRadius.circular(
-      radius ?? AppSizes.radiusLarge,
+      radius ?? AppSizes.radiusL,
     );
 
     return Padding(

@@ -1,110 +1,84 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 import '../../../core/colors/colors.dart';
-import '../../../core/routes/route_names.dart';
-import '../../../models/product/product_model.dart';
-import '../../cart/providers/cart_provider.dart';
-import '../providers/product_provider.dart';
+import '../../../core/constants/constants.dart';
+import '../../../core/theme/themes.dart';
 
 class ProductAppBar extends StatelessWidget
     implements PreferredSizeWidget {
   const ProductAppBar({
     super.key,
-    required this.product,
+    this.title = "",
+    this.showShare = true,
+    this.showFavorite = false,
+    this.onFavorite,
+    this.onShare,
+    this.isFavorite = false,
   });
 
-  final ProductModel product;
+  final String title;
+  final bool showShare;
+  final bool showFavorite;
+  final bool isFavorite;
+
+  final VoidCallback? onFavorite;
+  final VoidCallback? onShare;
+
+  @override
+  Size get preferredSize =>
+      const Size.fromHeight(
+        AppSizes.appBarHeight,
+      );
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
       elevation: 0,
       centerTitle: true,
-
-      title: Text(product.name),
+      backgroundColor: AppColors.background,
+      surfaceTintColor: Colors.transparent,
 
       leading: IconButton(
-        icon: const Icon(Icons.arrow_back_ios_new),
+        icon: const Icon(
+          Icons.arrow_back_ios_new_rounded,
+        ),
         onPressed: () {
           Navigator.pop(context);
         },
       ),
 
+      title: Text(
+        title,
+        style: AppTextStyles.appBarTitle,
+      ),
+
       actions: [
-        Consumer<ProductProvider>(
-          builder: (context, provider, child) {
-            final current =
-                provider.selectedProduct ?? product;
 
-            return IconButton(
-              onPressed: () {
-                provider.toggleFavorite(
-                  current.id,
-                );
-              },
-              icon: Icon(
-                current.isFavorite
-                    ? Icons.favorite
-                    : Icons.favorite_border,
-                color: current.isFavorite
-                    ? Colors.red
-                    : AppColors.primary,
-              ),
-            );
-          },
+        if (showFavorite)
+          IconButton(
+            onPressed: onFavorite,
+            icon: Icon(
+              isFavorite
+                  ? Icons.favorite
+                  : Icons.favorite_border,
+              color: isFavorite
+                  ? AppColors.favorite
+                  : AppColors.textDark,
+            ),
+          ),
+
+        if (showShare)
+          IconButton(
+            onPressed: onShare,
+            icon: const Icon(
+              Icons.share_outlined,
+            ),
+          ),
+
+        const SizedBox(
+          width: AppSizes.spaceXS,
         ),
-
-        Consumer<CartProvider>(
-          builder: (context, cart, child) {
-            return Stack(
-              children: [
-                IconButton(
-                  icon: const Icon(
-                    Icons.shopping_cart_outlined,
-                  ),
-                  onPressed: () {
-                    Navigator.pushNamed(
-                      context,
-                      RouteNames.cart,
-                    );
-                  },
-                ),
-
-                if (cart.totalItems > 0)
-                  Positioned(
-                    right: 8,
-                    top: 8,
-                    child: Container(
-                      padding:
-                          const EdgeInsets.all(4),
-                      decoration:
-                          const BoxDecoration(
-                        color: Colors.red,
-                        shape: BoxShape.circle,
-                      ),
-                      child: Text(
-                        cart.totalItems.toString(),
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 10,
-                          fontWeight:
-                              FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ),
-              ],
-            );
-          },
-        ),
-
-        const SizedBox(width: 8),
       ],
     );
   }
-
-  @override
-  Size get preferredSize =>
-      const Size.fromHeight(kToolbarHeight);
 }

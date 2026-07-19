@@ -1,10 +1,14 @@
+
+
+// order_item_tile.dart
+
 import 'package:flutter/material.dart';
 
-import '../../../core/colors/app_colors.dart';
 import '../../../core/constants/constants.dart';
 import '../../../core/theme/app_text_styles.dart';
-import '../../../models/cart/cart_model.dart';
-import '../../../shared/widgets/common/app_network_image.dart';
+import '../../../models/order/order_item_model.dart';
+import '../helpers/order_formatter.dart';
+
 
 class OrderItemTile extends StatelessWidget {
   const OrderItemTile({
@@ -12,44 +16,31 @@ class OrderItemTile extends StatelessWidget {
     required this.item,
   });
 
-  final CartModel item;
+  final OrderItemModel item;
 
   @override
   Widget build(BuildContext context) {
-    final product = item.product;
-
-    return Container(
-      margin: const EdgeInsets.only(
-        bottom: AppSizes.spaceL,
-      ),
-      padding: const EdgeInsets.all(
-        AppSizes.spaceM,
-      ),
-      decoration: BoxDecoration(
-        color: AppColors.white,
-        borderRadius: BorderRadius.circular(
-          AppSizes.radiusLarge,
-        ),
-        border: Border.all(
-          color: AppColors.border,
-        ),
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+        vertical: AppSizes.spaceS,
       ),
       child: Row(
         crossAxisAlignment:
             CrossAxisAlignment.start,
         children: [
           //--------------------------------------------------
-          // Product Image
+          // Image
           //--------------------------------------------------
 
           ClipRRect(
-            borderRadius: BorderRadius.circular(
-              AppSizes.radiusMedium,
+            borderRadius:
+                BorderRadius.circular(
+              AppSizes.radiusM,
             ),
-            child: AppNetworkImage(
-              imagePath: product.image,
-              width: 72,
-              height: 72,
+            child: Image.asset(
+              item.product.image,
+              width: AppSizes.imageS,
+              height: AppSizes.imageS,
               fit: BoxFit.cover,
             ),
           ),
@@ -59,7 +50,7 @@ class OrderItemTile extends StatelessWidget {
           ),
 
           //--------------------------------------------------
-          // Product Details
+          // Product
           //--------------------------------------------------
 
           Expanded(
@@ -68,44 +59,39 @@ class OrderItemTile extends StatelessWidget {
                   CrossAxisAlignment.start,
               children: [
                 Text(
-                  product.name,
-                  style:
-                      AppTextStyles.titleMedium,
-                  maxLines: 2,
-                  overflow:
-                      TextOverflow.ellipsis,
+                  item.product.name,
+                  style: AppTextStyles
+                      .titleSmall,
                 ),
 
                 const SizedBox(
-                  height: AppSizes.spaceXS,
+                  height:
+                      AppSizes.spaceXS,
                 ),
 
                 Text(
-                  "₹${product.price.toStringAsFixed(0)}",
-                  style:
-                      AppTextStyles.bodyMedium,
-                ),
-
-                const SizedBox(
-                  height: AppSizes.spaceXS,
-                ),
-
-                Text(
-                  "Qty : ${item.quantity}",
-                  style:
-                      AppTextStyles.bodySmall,
+                  OrderFormatter
+                      .formatQuantity(
+                    item.quantity,
+                  ),
+                  style: AppTextStyles
+                      .bodySmall,
                 ),
               ],
             ),
           ),
 
           //--------------------------------------------------
-          // Total Price
+          // Price
           //--------------------------------------------------
 
           Text(
-            "₹${item.totalPrice.toStringAsFixed(0)}",
-            style: AppTextStyles.heading3,
+            OrderFormatter
+                .formatAmount(
+              item.total,
+            ),
+            style:
+                AppTextStyles.price,
           ),
         ],
       ),

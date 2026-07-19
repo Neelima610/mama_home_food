@@ -69,7 +69,7 @@ class _CouponCardState
       elevation: 2,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(
-          AppSizes.radiusLarge,
+          AppSizes.radiusL,
         ),
       ),
       child: Padding(

@@ -1,23 +1,33 @@
+// home_screen.dart
+
 import 'package:flutter/material.dart';
 
 import '../../../core/constants/constants.dart';
 import '../../../core/routes/route_names.dart';
-import '../../../core/theme/themes.dart';
+import '../../../core/theme/app_text_styles.dart';
 import '../../../data/repositories/repositories.dart';
 
-import '../widgets/banner_slider.dart';
 import '../../../shared/widgets/cards/category_card.dart';
-import '../widgets/home_app_bar.dart';
 import '../../../shared/widgets/cards/product_card.dart';
+
+import '../widgets/banner_slider.dart';
+import '../widgets/home_app_bar.dart';
 import '../widgets/search_box.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+  const HomeScreen({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
-    // Load data from repositories
-    final categories = CategoryRepository.getAllCategories();
+    //--------------------------------------------------
+    // Load Data
+    //--------------------------------------------------
+
+    final categories =
+        CategoryRepository.getAllCategories();
+
     final featuredProducts =
         ProductRepository.getFeaturedProducts();
 
@@ -30,17 +40,23 @@ class HomeScreen extends StatelessWidget {
           padding: const EdgeInsets.all(
             AppSizes.screenPadding,
           ),
+
           child: Column(
             crossAxisAlignment:
                 CrossAxisAlignment.start,
+
             children: [
               //--------------------------------------------------
               // Home App Bar
               //--------------------------------------------------
 
               const HomeAppBar(
-                userName: "Neelima",
-                location: AppConstants.hyderabad,
+                userName:
+                    AppConstants.userName,
+
+                location:
+                    AppConstants.hyderabad,
+
                 cartCount: 2,
               ),
 
@@ -69,42 +85,65 @@ class HomeScreen extends StatelessWidget {
               ),
 
               //--------------------------------------------------
-              // Categories
+              // Categories Title
               //--------------------------------------------------
 
               Text(
                 AppStrings.categories,
-                style: AppTextStyles.heading2,
+                style:
+                    AppTextStyles.heading2,
               ),
 
               const SizedBox(
-                height: AppSizes.spaceL,
+                height: AppSizes.spaceM,
               ),
 
-              GridView.builder(
-                shrinkWrap: true,
-                physics:
-                    const NeverScrollableScrollPhysics(),
-                itemCount: categories.length,
-                gridDelegate:
-                    const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 4,
-                  crossAxisSpacing: 12,
-                  mainAxisSpacing: 12,
-                  childAspectRatio: 0.78,
+              //--------------------------------------------------
+              // Categories
+              //--------------------------------------------------
+
+              SizedBox(
+                height: 110,
+
+                child: ListView.separated(
+                  scrollDirection:
+                      Axis.horizontal,
+
+                  itemCount:
+                      categories.length,
+
+                  separatorBuilder: (
+                    context,
+                    index,
+                  ) {
+                    return const SizedBox(
+                      width: AppSizes.spaceM,
+                    );
+                  },
+
+                  itemBuilder: (
+                    context,
+                    index,
+                  ) {
+                    return SizedBox(
+                      width: 80,
+
+                      child: CategoryCard(
+                        category:
+                            categories[index],
+
+                        onTap: () {
+                          Navigator.pushNamed(
+                            context,
+                            RouteNames.category,
+                            arguments:
+                                categories[index],
+                          );
+                        },
+                      ),
+                    );
+                  },
                 ),
-                itemBuilder: (context, index) {
-                  return CategoryCard(
-                    category: categories[index],
-                    onTap: () {
-                      Navigator.pushNamed(
-                        context,
-                        RouteNames.category,
-                        arguments: categories[index],
-                      );
-                    },
-                  );
-                },
               ),
 
               const SizedBox(
@@ -112,46 +151,59 @@ class HomeScreen extends StatelessWidget {
               ),
 
               //--------------------------------------------------
-              // Featured Products
+              // Featured Products Title
               //--------------------------------------------------
 
               Text(
                 AppStrings.featuredProducts,
-                style: AppTextStyles.heading2,
+                style:
+                    AppTextStyles.heading2,
               ),
 
               const SizedBox(
                 height: AppSizes.spaceL,
               ),
 
+              //--------------------------------------------------
+              // Featured Products
+              //--------------------------------------------------
+
               GridView.builder(
                 shrinkWrap: true,
+
                 physics:
                     const NeverScrollableScrollPhysics(),
-                itemCount: featuredProducts.length,
+
+                itemCount:
+                    featuredProducts.length,
+
                 gridDelegate:
                     const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
-                  crossAxisSpacing: 16,
-                  mainAxisSpacing: 16,
-                  childAspectRatio: 0.56,
+
+                  crossAxisSpacing:
+                      AppSizes.spaceM,
+
+                  mainAxisSpacing:
+                      AppSizes.spaceM,
+
+                  childAspectRatio: 0.48,
                 ),
-                itemBuilder: (context, index) {
+
+                itemBuilder: (
+                  context,
+                  index,
+                ) {
                   return ProductCard(
-                    product: featuredProducts[index],
-                    onTap: () {
-                      debugPrint(
-                        'Selected: ${featuredProducts[index].name}',
-                      );
-                    },
-                    onAddToCart: () {
-                      debugPrint(
-                        'Added to Cart: ${featuredProducts[index].name}',
-                      );
-                    },
+                    product:
+                        featuredProducts[index],
                   );
                 },
               ),
+
+              //--------------------------------------------------
+              // Bottom Spacing
+              //--------------------------------------------------
 
               const SizedBox(
                 height: 100,

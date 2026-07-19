@@ -1,106 +1,93 @@
+
+// product_provider.dart
 import 'package:flutter/material.dart';
 
 import '../../../data/repositories/product_repository.dart';
 import '../../../models/product/product_model.dart';
 
 class ProductProvider extends ChangeNotifier {
-  ProductProvider();
+  
 
   //--------------------------------------------------
-  // Variables
+  // State
   //--------------------------------------------------
-
-  final List<ProductModel> _products = [];
-
-  ProductModel? _selectedProduct;
 
   bool _isLoading = false;
 
+  ProductModel? _selectedProduct;
+
   int _quantity = 1;
+
+  String _searchQuery = "";
+
+  final Set<String> _favoriteIds = {};
+
+  List<ProductModel> _products = [];
+
+  List<ProductModel> _filteredProducts = [];
 
   //--------------------------------------------------
   // Getters
   //--------------------------------------------------
 
-  List<ProductModel> get products => _products;
-
-  ProductModel? get selectedProduct => _selectedProduct;
-
   bool get isLoading => _isLoading;
+
+  ProductModel? get selectedProduct =>
+      _selectedProduct;
 
   int get quantity => _quantity;
 
-  //--------------------------------------------------
-  // Load All Products
-  //--------------------------------------------------
+  String get searchQuery =>
+      _searchQuery;
 
-  void loadProducts() {
-    _isLoading = true;
-    notifyListeners();
+  List<ProductModel> get products =>
+      _products;
 
-    _products
-      ..clear()
-      ..addAll(
-        ProductRepository.getAllProducts(),
-      );
-
-    _isLoading = false;
-    notifyListeners();
-  }
-
-  //--------------------------------------------------
-  // Featured Products
-  //--------------------------------------------------
+  List<ProductModel> get filteredProducts =>
+      _filteredProducts;
 
   List<ProductModel> get featuredProducts =>
       ProductRepository.getFeaturedProducts();
 
-  //--------------------------------------------------
-  // Products By Category
-  //--------------------------------------------------
+  List<ProductModel> get bestSellerProducts =>
+      ProductRepository.getBestSellerProducts();
 
-  List<ProductModel> getProductsByCategory(
-    String categoryId,
-  ) {
-    return ProductRepository.getProductsByCategory(
-      categoryId,
-    );
-  }
+  List<ProductModel> get recommendedProducts =>
+      ProductRepository.getRecommendedProducts();
 
-  //--------------------------------------------------
-  // Search Products
-  //--------------------------------------------------
+  List<ProductModel> get popularProducts =>
+      ProductRepository.getPopularProducts();
 
-  List<ProductModel> searchProducts(
-    String keyword,
-  ) {
-    if (keyword.trim().isEmpty) {
-      return _products;
-    }
-
-    return ProductRepository.searchProducts(
-      keyword,
-    );
-  }
+  List<ProductModel> get offerProducts =>
+      ProductRepository.getOfferProducts();
 
   //--------------------------------------------------
-  // Select Product
+  // Initial Load
   //--------------------------------------------------
 
-  void selectProduct(ProductModel product) {
-    _selectedProduct = product;
+  Future<void> loadProducts() async {
+    _isLoading = true;
+    notifyListeners();
 
-    _quantity = 1;
+    _products =
+        ProductRepository.getAllProducts();
+
+    _filteredProducts =
+        List.from(_products);
+
+    _isLoading = false;
 
     notifyListeners();
   }
 
   //--------------------------------------------------
-  // Clear Product
+  // Product
   //--------------------------------------------------
 
-  void clearSelectedProduct() {
-    _selectedProduct = null;
+  void selectProduct(
+    ProductModel product,
+  ) {
+    _selectedProduct = product;
 
     _quantity = 1;
 
@@ -118,11 +105,11 @@ class ProductProvider extends ChangeNotifier {
   }
 
   void decreaseQuantity() {
-    if (_quantity > 1) {
-      _quantity--;
+    if (_quantity == 1) return;
 
-      notifyListeners();
-    }
+    _quantity--;
+
+    notifyListeners();
   }
 
   void resetQuantity() {
@@ -131,58 +118,121 @@ class ProductProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-//--------------------------------------------------
-// Favorite
-//--------------------------------------------------
+  //--------------------------------------------------
+  // Favorites
+  //--------------------------------------------------
 
-void toggleFavorite(String productId) {
-  final index = _products.indexWhere(
-    (product) => product.id == productId,
-  );
-
-  if (index == -1) return;
-
-  final product = _products[index];
-
-  _products[index] = product.copyWith(
-    isFavorite: !product.isFavorite,
-  );
-
-  // Update selected product if it's the same product
-  if (_selectedProduct != null &&
-      _selectedProduct!.id == productId) {
-    _selectedProduct = _products[index];
+  bool isFavorite(
+    String id,
+  ) {
+    return _favoriteIds.contains(id);
   }
 
-  notifyListeners();
-}
-
-//--------------------------------------------------
-// Favorite Products
-//--------------------------------------------------
-
-List<ProductModel> get favoriteProducts {
-  return _products
-      .where((product) => product.isFavorite)
-      .toList();
-}
-  //--------------------------------------------------
-  // Total Price
-  //--------------------------------------------------
-
-  double get totalPrice {
-    if (_selectedProduct == null) {
-      return 0;
+  void toggleFavorite(
+    ProductModel product,
+  ) {
+    if (_favoriteIds.contains(product.id)) {
+      _favoriteIds.remove(product.id);
+    } else {
+      _favoriteIds.add(product.id);
     }
 
-    return _selectedProduct!.price * _quantity;
+    notifyListeners();
+  }
+
+  //--------------------------------------------------
+  // Search
+  //--------------------------------------------------
+
+  void search(
+    String value,
+  ) {
+    _searchQuery = value;
+
+    _filteredProducts =
+        ProductRepository.searchProducts(
+      value,
+    );
+
+    notifyListeners();
+  }
+
+  //--------------------------------------------------
+  // Category
+  //--------------------------------------------------
+
+  void loadCategoryProducts(
+    String categoryId,
+  ) {
+    _filteredProducts =
+        ProductRepository
+            .getProductsByCategory(
+      categoryId,
+    );
+
+    notifyListeners();
+  }
+
+  //--------------------------------------------------
+  // Similar
+  //--------------------------------------------------
+
+  List<ProductModel> getSimilarProducts(
+    ProductModel product,
+  ) {
+    return ProductRepository
+        .getSimilarProducts(product);
+  }
+
+  //--------------------------------------------------
+  // Sorting
+  //--------------------------------------------------
+
+  void sortByPriceLowToHigh() {
+    _filteredProducts.sort(
+      (a, b) =>
+          a.price.compareTo(b.price),
+    );
+
+    notifyListeners();
+  }
+
+  void sortByPriceHighToLow() {
+    _filteredProducts.sort(
+      (a, b) =>
+          b.price.compareTo(a.price),
+    );
+
+    notifyListeners();
+  }
+
+  void sortByRating() {
+    _filteredProducts.sort(
+      (a, b) =>
+          b.rating.compareTo(a.rating),
+    );
+
+    notifyListeners();
   }
 
   //--------------------------------------------------
   // Refresh
   //--------------------------------------------------
 
-  Future<void> refreshProducts() async {
-    loadProducts();
+  Future<void> refresh() async {
+    await loadProducts();
+  }
+
+  //--------------------------------------------------
+  // Clear Search
+  //--------------------------------------------------
+
+  void clearSearch() {
+    _searchQuery = "";
+
+    _filteredProducts =
+        List.from(_products);
+
+    notifyListeners();
   }
 }

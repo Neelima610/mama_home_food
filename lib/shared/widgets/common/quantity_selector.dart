@@ -1,3 +1,5 @@
+// quantity_selector.dart
+
 import 'package:flutter/material.dart';
 
 import '../../../core/colors/colors.dart';
@@ -18,51 +20,75 @@ class QuantitySelector extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(
-          "Quantity",
-          style: AppTextStyles.titleMedium,
+    return Container(
+      height: 40,
+      decoration: BoxDecoration(
+        color: AppColors.card,
+        borderRadius: BorderRadius.circular(
+          AppSizes.radiusL,
         ),
+        border: Border.all(
+          color: AppColors.divider,
+        ),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          //--------------------------------------------------
+          // Decrease
+          //--------------------------------------------------
 
-        Container(
-          decoration: BoxDecoration(
-            color: AppColors.card,
+          InkWell(
+            onTap: quantity > 1 ? onDecrease : null,
             borderRadius: BorderRadius.circular(
-              AppSizes.radiusLarge,
+              AppSizes.radiusL,
             ),
-            border: Border.all(
-              color: AppColors.divider,
+            child: SizedBox(
+              width: 40,
+              height: 40,
+              child: Icon(
+                Icons.remove,
+                color: quantity > 1
+                    ? AppColors.primary
+                    : AppColors.grey,
+              ),
             ),
           ),
-          child: Row(
-            children: [
-              IconButton(
-                onPressed: quantity > 1
-                    ? onDecrease
-                    : null,
-                icon: const Icon(Icons.remove),
-              ),
 
-              SizedBox(
-                width: 40,
-                child: Center(
-                  child: Text(
-                    quantity.toString(),
-                    style: AppTextStyles.titleMedium,
-                  ),
-                ),
-              ),
+          //--------------------------------------------------
+          // Quantity
+          //--------------------------------------------------
 
-              IconButton(
-                onPressed: onIncrease,
-                icon: const Icon(Icons.add),
+          SizedBox(
+            width: 36,
+            child: Center(
+              child: Text(
+                quantity.toString(),
+                style: AppTextStyles.titleMedium,
               ),
-            ],
+            ),
           ),
-        ),
-      ],
+
+          //--------------------------------------------------
+          // Increase
+          //--------------------------------------------------
+
+          InkWell(
+            onTap: onIncrease,
+            borderRadius: BorderRadius.circular(
+              AppSizes.radiusL,
+            ),
+            child: const SizedBox(
+              width: 40,
+              height: 40,
+              child: Icon(
+                Icons.add,
+                color: AppColors.primary,
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

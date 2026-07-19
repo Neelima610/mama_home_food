@@ -134,7 +134,7 @@ class _SplashScreenState extends State<SplashScreen>
                     //--------------------------------------------------
 
                     Text(
-                      AppStrings.tagline,
+                      AppStrings.businessTagline,
                       style: textTheme.titleMedium?.copyWith(
                         color: AppColors.textLight.withValues(
                           alpha: 0.85,

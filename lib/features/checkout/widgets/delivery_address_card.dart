@@ -1,3 +1,6 @@
+
+
+// delivery_address_card.dart
 import 'package:flutter/material.dart';
 
 import '../../../core/colors/colors.dart';
@@ -25,7 +28,7 @@ class DeliveryAddressCard extends StatelessWidget {
       elevation: 2,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(
-          AppSizes.radiusLarge,
+          AppSizes.radiusL,
         ),
       ),
       child: Padding(
@@ -105,15 +108,18 @@ class DeliveryAddressCard extends StatelessWidget {
             // Edit Button
             //--------------------------------------------------
 
-            Align(
-              alignment: Alignment.centerRight,
-              child: SecondaryButton(
-                text: AppStrings.editAddress,
-                icon: Icons.edit_location_alt_outlined,
-                width: 170,
-                onPressed: onEdit,
-              ),
-            ),
+            Row(
+  mainAxisAlignment: MainAxisAlignment.end,
+  children: [
+    Flexible(
+      child: SecondaryButton(
+        text: AppStrings.editAddress,
+        icon: Icons.edit_location_alt_outlined,
+        onPressed: onEdit,
+      ),
+    ),
+  ],
+),
           ],
         ),
       ),

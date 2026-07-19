@@ -39,23 +39,31 @@ static const double spaceMassive = 64.0;
   // Border Radius
   // ==========================================================
 
-  static const double radiusSmall = 8.0;
+  static const double radiusS = 8.0;
 
-  static const double radiusMedium = 12.0;
+  static const double radiusM = 12.0;
 
-  static const double radiusLarge = 16.0;
+  static const double radiusL = 16.0;
 
-  static const double radiusXLarge = 24.0;
+  static const double radiusXL = 24.0;
+
+  //--------------------------------------------------
+// Favorite Button
+//--------------------------------------------------
+
+static const double favoriteButtonSize = 42;
+
+static const double favoriteIconSize = 22;
 
   // ==========================================================
   // Icon Sizes
   // ==========================================================
+ static const double iconXS = 12;
+  static const double iconS = 16;
 
-  static const double iconSmall = 18.0;
+  static const double iconM = 24;
 
-  static const double iconMedium = 24.0;
-
-  static const double iconLarge = 30.0;
+  static const double iconL = 30;
 
   // ==========================================================
   // Button Sizes
@@ -116,13 +124,15 @@ static const double spaceMassive = 64.0;
   // ==========================================================
 // Text Sizes
 // ==========================================================
-static const double fontXS = 8;
+static const double fontXS = 10;
 static const double fontS = 12;
 static const double fontM = 14;
 static const double fontL = 16;
 static const double fontXL = 20;
-static const double fontXXL =24;
-
+static const double fontXXL = 24;
+static const double fontXXLDisplay = 28;
+static const double fontXXXL = 32;
+static const double fontDisplay = 36;
 // ==========================================================
 // Logo Sizes
 // ==========================================================
@@ -136,9 +146,27 @@ static const double logoXL = 220;
 // Avatar Sizes
 // ==========================================================
 
-static const double avatarSmall = 40;
-static const double avatarMedium = 60;
-static const double avatarLarge = 90;
+static const double avatarXS = 32;
+static const double avatarS = 40;
+static const double avatarM = 56;
+static const double avatarL = 72;
+static const double avatarXL = 96;
+static const double avatarXXL = 120;
+
+static const double imageS = 64;
+
+
+static const double zero = 0.0;
+static const double one = 1.0;
+static const double two = 2.0;
+
+
+static const double loaderSize = 48.0;
+
+static const double loaderStrokeWidth = 3.0;
+ static const double emptyIconSize = 96.0;
+
+ 
   }
 
   

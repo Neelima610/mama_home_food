@@ -1,5 +1,8 @@
+// category_product_grid.dart
+
 import 'package:flutter/material.dart';
 
+import '../../../core/constants/constants.dart';
 import '../../../models/product/product_model.dart';
 import '../../../shared/widgets/cards/product_card.dart';
 
@@ -13,44 +16,29 @@ class CategoryProductGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (products.isEmpty) {
-      return const Padding(
-        padding: EdgeInsets.symmetric(
-          vertical: 60,
-        ),
-        child: Center(
-          child: Text(
-            "No products found.",
-          ),
-        ),
-      );
-    }
-
     return GridView.builder(
       shrinkWrap: true,
+
+      // Allow parent SingleChildScrollView to scroll
       physics:
           const NeverScrollableScrollPhysics(),
+
       itemCount: products.length,
+
       gridDelegate:
           const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
-        crossAxisSpacing: 16,
-        mainAxisSpacing: 16,
-        childAspectRatio: 0.56,
+        crossAxisSpacing: AppSizes.spaceM,
+        mainAxisSpacing: AppSizes.spaceM,
+        childAspectRatio: 0.48,
       ),
-      itemBuilder: (context, index) {
+
+      itemBuilder: (
+        context,
+        index,
+      ) {
         return ProductCard(
           product: products[index],
-          onTap: () {
-            debugPrint(
-              "Selected: ${products[index].name}",
-            );
-          },
-          onAddToCart: () {
-            debugPrint(
-              "Added: ${products[index].name}",
-            );
-          },
         );
       },
     );

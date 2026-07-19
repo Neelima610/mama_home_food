@@ -91,4 +91,20 @@ class AppColors {
 
   static const Color divider = Color(0xFFEEEEEE);
 
+
+  //--------------------------------------------------
+// Payment
+//--------------------------------------------------
+
+
+static const Color disabled = Color(0xFFBDBDBD);
+
+//==================================================
+  // Text
+  //==================================================
+
+  static const Color textPrimary = Color(0xFF222222);
+
+  static const Color textSecondary = Color(0xFF757575);
+
 }

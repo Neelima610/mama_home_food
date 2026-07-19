@@ -32,7 +32,7 @@ class AuthAppBar extends StatelessWidget
               icon: const Icon(
                 Icons.arrow_back_ios_new_rounded,
                 color: AppColors.textDark,
-                size: AppSizes.iconMedium,
+                size: AppSizes.iconM,
               ),
               onPressed: () => Navigator.pop(context),
             )
